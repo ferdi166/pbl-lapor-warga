@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="id" style="">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>LaporWarga - Portal Pengaduan &amp; Aspirasi Warga</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <!-- Bootstrap 5.3.3 & Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <header class="navbar navbar-expand-lg bg-white sticky-top shadow-sm py-3">
+        <div class="container">
+            <!-- Left: Logo -->
+            <a class="navbar-brand d-flex items-center align-items-center gap-2 fw-bold text-dark fs-5 text-decoration-none"
+                href="#">
+                <div class="d-flex align-items-center justify-content-center text-primary rounded-3 bg-primary bg-opacity-10"
+                    style="width: 40px; height: 40px;">
+                    <i class="bi bi-shield-check fs-5"></i>
+                </div>
+                <span class="">LaporWarga</span>
+            </a>
+            <!-- Center: Navigation Links -->
+            <div class="collapse navbar-collapse justify-content-center" id="navbarMain">
+                <ul class="navbar-nav gap-1">
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold text-primary px-3 py-2 rounded-pill active bg-primary bg-opacity-10"
+                            href="#">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-medium text-secondary px-3 py-2 rounded-pill hover:text-dark"
+                            href="#buat-laporan">Buat Laporan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-medium text-secondary px-3 py-2 rounded-pill hover:text-dark"
+                            href="#lacak-status">Lacak Status</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-medium text-secondary px-3 py-2 rounded-pill hover:text-dark"
+                            href="#berita-info-publik">Berita &amp; Info Publik</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Right: Primary CTA Button -->
+            <div class="d-flex align-items-center">
+                <a class="btn btn-primary rounded-pill px-4 py-2 fw-semibold shadow-sm" href="tel:112">
+                    Hubungi Kami
+                </a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <!-- HERO SECTION -->
+        <section class="py-5 bg-white">
+            <div class="container py-lg-4">
+                <div class="row align-items-center g-5">
+                    <!-- Left Column -->
+                    <div class="col-lg-7">
+                        <div
+                            class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill text-primary fw-semibold small mb-4 bg-primary bg-opacity-10">
+                            <i class="bi bi-patch-check-fill"></i>
+                            <span class="">Layanan Pengaduan &amp; Aspirasi Resmi 24/7</span>
+                        </div>
+                        <h1 class="display-5 text-dark lh-sm mb-4 fw-bold">
+                            Sampaikan Laporan &amp; Aspirasi Anda untuk Desa/Kota yang Lebih Baik
+                        </h1>
+                        <p class="lead text-secondary mb-4 fs-6">
+                            Wadah transparansi partisipasi publik terintegrasi untuk mempercepat perbaikan fasilitas
+                            umum, infrastruktur, kebersihan, dan ketertiban lingkungan Anda secara akuntabel.
+                        </p>
+                        <div class="d-flex flex-wrap align-items-center gap-3 mb-5">
+                            <a class="btn btn-primary rounded-pill px-4 py-3 fw-semibold shadow-sm d-inline-flex align-items-center gap-2"
+                                href="#buat-laporan">
+                                <i class="bi bi-megaphone-fill"></i>
+                                <span class="">Buat Pengaduan</span>
+                            </a>
+                            <a class="btn btn-outline-secondary rounded-pill px-4 py-3 fw-semibold bg-white text-dark border-secondary-subtle d-inline-flex align-items-center gap-2"
+                                href="#lacak-status">
+                                <i class="bi bi-search text-primary"></i>
+                                <span class="">Lacak Laporan</span>
+                            </a>
+                        </div>
+                        <!-- Stats -->
+                        <div class="row pt-4 border-top border-light-subtle g-3">
+                            <div class="col-4 border-end">
+                                <div class="fs-3 fw-bold text-primary">4.850+</div>
+                                <div class="small text-secondary fw-medium">Total Laporan</div>
+                            </div>
+                            <div class="col-4 border-end ps-3 ps-md-4">
+                                <div class="fs-3 fw-bold text-dark">98.4%</div>
+                                <div class="small text-secondary fw-medium">Tingkat Penyelesaian</div>
+                            </div>
+                            <div class="col-4 ps-3 ps-md-4">
+                                <div class="fs-3 fw-bold text-dark">&lt; 24 Jam</div>
+                                <div class="small text-secondary fw-medium">Waktu Respons</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Right Column -->
+                    <div class="col-lg-5">
+                        <div class="card border-0 bg-white rounded-4 shadow-sm p-4 p-xl-5">
+                            <div class="d-flex align-items-center justify-content-between mb-4 pb-2 border-bottom">
+                                <div>
+                                    <span
+                                        class="badge bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-pill small fw-semibold mb-2">Panduan
+                                        Warga</span>
+                                    <h3 class="h5 fw-bold text-dark mb-0">Cara Mudah Buat Laporan</h3>
+                                </div>
+                                <div class="rounded-circle bg-primary bg-opacity-10 text-primary d-flex align-items-center justify-content-center"
+                                    style="width: 44px; height: 44px;">
+                                    <i class="bi bi-info-circle-fill fs-5"></i>
+                                </div>
+                            </div>
+
+                            <div class="d-flex flex-column gap-4">
+                                <!-- Step 1 -->
+                                <div class="d-flex align-items-start gap-3">
+                                    <div class="rounded-3 bg-primary bg-opacity-10 text-primary d-flex align-items-center justify-content-center flex-shrink-0"
+                                        style="width: 46px; height: 46px;">
+                                        <i class="bi bi-camera-fill fs-5"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="h6 fw-bold text-dark mb-1">1. Foto &amp; Detail Kejadian</h4>
+                                        <p class="text-secondary small mb-0">Lampirkan bukti foto dan lokasi yang jelas.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Step 2 -->
+                                <div class="d-flex align-items-start gap-3">
+                                    <div class="rounded-3 bg-primary bg-opacity-10 text-primary d-flex align-items-center justify-content-center flex-shrink-0"
+                                        style="width: 46px; height: 46px;">
+                                        <i class="bi bi-shield-check fs-5"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="h6 fw-bold text-dark mb-1">2. Verifikasi Tim Siaga</h4>
+                                        <p class="text-secondary small mb-0">Laporan diteruskan ke dinas terkait max 3
+                                            jam.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Step 3 -->
+                                <div class="d-flex align-items-start gap-3">
+                                    <div class="rounded-3 bg-primary bg-opacity-10 text-primary d-flex align-items-center justify-content-center flex-shrink-0"
+                                        style="width: 46px; height: 46px;">
+                                        <i class="bi bi-tools fs-5"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="h6 fw-bold text-dark mb-1">3. Penanganan Lapangan</h4>
+                                        <p class="text-secondary small mb-0">Pantau progress pengerjaan hingga selesai.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-4 pt-3 border-top d-flex align-items-center justify-content-center">
+                                <span
+                                    class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill small fw-semibold d-inline-flex align-items-center gap-2">
+                                    <i class="bi bi-patch-check-fill"></i>
+                                    Proses Transparan &amp; Terintegrasi
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- CATEGORY SELECTOR -->
+        <section class="py-5 bg-light border-top border-bottom border-light-subtle">
+            <div class="container py-lg-4">
+                <div class="text-center mx-auto mb-5" style="max-width: 600px;">
+                    <span
+                        class="badge text-primary fw-bold text-uppercase mb-2 px-3 py-1 rounded-pill bg-primary bg-opacity-10">Kategori
+                        Laporan</span>
+                    <h2 class="fw-bold text-dark">Pilih Bidang Permasalahan Anda</h2>
+                </div>
+                <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3 g-md-4">
+                    <!-- Card 1 -->
+                    <div class="col">
+                        <a class="card border-0 shadow-sm rounded-4 p-4 text-center text-decoration-none hover-lift h-100 bg-white"
+                            href="#buat-laporan">
+                            <div class="rounded-circle text-primary mx-auto mb-3 d-flex align-items-center justify-content-center bg-primary bg-opacity-10"
+                                style="width: 56px; height: 56px;">
+                                <i class="bi bi-signpost-split fs-4"></i>
+                            </div>
+                            <h6 class="fw-bold text-dark mb-1">Akses &amp; Jembatan</h6>
+                            <small class="text-secondary">Jalan, trotoar &amp; jembatan</small>
+                        </a>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="col">
+                        <a class="card border-0 shadow-sm rounded-4 p-4 text-center text-decoration-none hover-lift h-100 bg-white"
+                            href="#buat-laporan">
+                            <div class="rounded-circle bg-success-subtle text-success mx-auto mb-3 d-flex align-items-center justify-content-center"
+                                style="width: 56px; height: 56px;">
+                                <i class="bi bi-trash3 fs-4"></i>
+                            </div>
+                            <h6 class="fw-bold text-dark mb-1">Kebersihan Sampah</h6>
+                            <small class="text-secondary">TPS, limbah liar &amp; got</small>
+                        </a>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="col">
+                        <a class="card border-0 shadow-sm rounded-4 p-4 text-center text-decoration-none hover-lift h-100 bg-white"
+                            href="#buat-laporan">
+                            <div class="rounded-circle bg-warning-subtle text-warning-emphasis mx-auto mb-3 d-flex align-items-center justify-content-center"
+                                style="width: 56px; height: 56px;">
+                                <i class="bi bi-shield-shaded fs-4"></i>
+                            </div>
+                            <h6 class="fw-bold text-dark mb-1">Ketertiban Umum</h6>
+                            <small class="text-secondary">Keamanan &amp; kenyamanan</small>
+                        </a>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="col">
+                        <a class="card border-0 shadow-sm rounded-4 p-4 text-center text-decoration-none hover-lift h-100 bg-white"
+                            href="#buat-laporan">
+                            <div class="rounded-circle bg-info-subtle text-info-emphasis mx-auto mb-3 d-flex align-items-center justify-content-center"
+                                style="width: 56px; height: 56px;">
+                                <i class="bi bi-droplet-half fs-4"></i>
+                            </div>
+                            <h6 class="fw-bold text-dark mb-1">Drainase &amp; Banjir</h6>
+                            <small class="text-secondary">Saluran air &amp; genangan</small>
+                        </a>
+                    </div>
+                    <!-- Card 5 -->
+                    <div class="col col-12 col-md-6 col-lg">
+                        <a class="card border-0 shadow-sm rounded-4 p-4 text-center text-decoration-none hover-lift h-100 bg-white"
+                            href="#buat-laporan">
+                            <div class="rounded-circle bg-purple-subtle text-purple mx-auto mb-3 d-flex align-items-center justify-content-center bg-danger-subtle text-danger"
+                                style="width: 56px; height: 56px;">
+                                <i class="bi bi-file-earmark-check fs-4"></i>
+                            </div>
+                            <h6 class="fw-bold text-dark mb-1">Layanan Administrasi</h6>
+                            <small class="text-secondary">Surat &amp; kependudukan</small>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- COMPLAINT FORM SECTION -->
+        <section class="py-5 bg-white" id="buat-laporan">
+            <div class="container py-lg-4">
+                <div class="text-center mx-auto mb-5" style="max-width: 680px;">
+                    <span
+                        class="badge text-primary fw-bold text-uppercase mb-2 px-3 py-1 rounded-pill bg-primary bg-opacity-10">Formulir
+                        Partisipasi Publik</span>
+                    <h2 class="fw-bold text-dark">Sampaikan Pengaduan Masyarakat</h2>
+                    <p class="text-secondary small mt-2">
+                        Isi formulir dengan data yang valid dan jelas untuk mempercepat proses verifikasi tim di
+                        lapangan serta disposisi ke dinas teknis terkait.
+                    </p>
+                </div>
+                <!-- Form Card Container (Max-width 850px) -->
+                <div class="mx-auto" style="max-width: 850px;">
+                    <div class="card border-0 shadow-lg rounded-4 p-4 p-md-5 bg-white hover-lift">
+                        <form id="complaintForm">
+                            <div class="row g-4">
+                                <!-- Judul Laporan -->
+                                <div class="col-12">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <label class="form-label fw-semibold small text-dark mb-0"
+                                            for="reportTitle">Judul Pengaduan <span class="text-danger">*</span></label>
+                                        <span class="text-muted small">Singkat &amp; padat</span>
+                                    </div>
+                                    <input class="form-control form-control-lg fs-6 rounded-3" id="reportTitle"
+                                        placeholder="Contoh: Jalan Berlubang Parah di Depan Puskesmas Merdeka No. 12"
+                                        required="" type="text">
+                                </div>
+                                <!-- Kategori -->
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold small text-dark" for="reportCategory">Kategori
+                                        Pengaduan <span class="text-danger">*</span></label>
+                                    <select class="form-select form-select-lg fs-6 rounded-3" id="reportCategory"
+                                        required="">
+                                        <option disabled="" selected="" value="">Pilih Kategori Masalah</option>
+                                        <option value="infrastruktur">Infrastruktur Jalan &amp; Jembatan</option>
+                                        <option value="sampah">Kebersihan &amp; Sampah Liar</option>
+                                        <option value="keamanan">Keamanan &amp; Ketertiban Umum</option>
+                                        <option value="perizinan">Pelayanan Publik &amp; Perizinan</option>
+                                        <option value="taman">Fasilitas Umum &amp; Ruang Terbuka Hijau</option>
+                                    </select>
+                                </div>
+                                <!-- Tanggal Kejadian -->
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold small text-dark" for="reportDate">Tanggal &amp;
+                                        Waktu Kejadian <span class="text-danger">*</span></label>
+                                    <input class="form-control form-control-lg fs-6 rounded-3" id="reportDate"
+                                        required="" type="date">
+                                </div>
+                                <!-- Lokasi Kejadian -->
+                                <div class="col-12">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <label class="form-label fw-semibold small text-dark mb-0"
+                                            for="reportLocation">Lokasi Kejadian Lengkap <span
+                                                class="text-danger">*</span></label>
+                                        <button
+                                            class="btn btn-link btn-sm text-decoration-none p-0 fw-semibold text-primary d-flex align-items-center gap-1"
+                                            onclick="document.getElementById('reportLocation').value = 'Jl. MH Thamrin No. 24, RW 04 Kelurahan Gondangdia, Jakarta Pusat (GPS Terdeteksi)';"
+                                            type="button">
+                                            <i class="bi bi-crosshair"></i>
+                                            <span class="">Gunakan GPS Saat Ini</span>
+                                        </button>
+                                    </div>
+                                    <div class="input-group">
+                                        <span
+                                            class="input-group-text bg-white text-secondary border-end-0 rounded-start-3"><i
+                                                class="bi bi-geo-alt"></i></span>
+                                        <input class="form-control form-control-lg fs-6 border-start-0 rounded-end-3"
+                                            id="reportLocation"
+                                            placeholder="Masukkan nama jalan, patokan landmark, RT/RW, dan kelurahan..."
+                                            required="" type="text">
+                                    </div>
+                                </div>
+                                <!-- Detail Kejadian -->
+                                <div class="col-12">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <label class="form-label fw-semibold small text-dark mb-0"
+                                            for="reportDescription">Detail Kronologi &amp; Dampak Masalah <span
+                                                class="text-danger">*</span></label>
+                                        <span class="text-muted small">Min. 50 kata</span>
+                                    </div>
+                                    <textarea class="form-control rounded-3 fs-6" id="reportDescription"
+                                        placeholder="Jelaskan kondisi permasalahan secara jelas: seberapa parah kerusakan, potensi bahaya bagi warga, dan perkiraan durasi sejak awal masalah muncul..."
+                                        required="" rows="4"></textarea>
+                                </div>
+                                <!-- Upload File Dropzone -->
+                                <div class="col-12">
+                                    <label class="form-label fw-semibold small text-dark">Upload Foto Bukti Lapangan
+                                        <span class="text-danger">*</span></label>
+                                    <div class="dropzone-box p-4 text-center"
+                                        onclick="document.getElementById('proofUpload').click();">
+                                        <div class="rounded-circle bg-white shadow-sm d-inline-flex align-items-center justify-content-center text-primary mb-3"
+                                            style="width: 52px; height: 52px;">
+                                            <i class="bi bi-cloud-arrow-up fs-3"></i>
+                                        </div>
+                                        <div class="fw-semibold text-dark small mb-1">Pilih file foto atau seret ke sini
+                                        </div>
+                                        <div class="text-secondary small mb-3">Mendukung format JPG, PNG (Maks. 5 MB).
+                                            Lampirkan minimal 1 foto dokumentasi jelas.</div>
+                                        <input accept="image/jpeg,image/png" class="d-none" id="proofUpload"
+                                            type="file">
+                                        <button
+                                            class="btn btn-outline-secondary btn-sm bg-white rounded-pill px-3 shadow-sm"
+                                            type="button">Pilih Berkas Foto</button>
+                                        <div class="d-none mt-3 alert alert-success d-inline-flex align-items-center gap-2 py-1 px-3 mb-0 small"
+                                            id="fileNameTag">
+                                            <i class="bi bi-check-circle-fill"></i>
+                                            <span class="">Bukti_Kerusakan_Lapangan_01.jpg (1.8 MB) - Siap
+                                                Dikirim</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Identity Privacy & Consent -->
+
+                                <!-- Submit Button -->
+                                <div class="col-12 pt-2">
+                                    <button
+                                        class="btn btn-primary btn-lg rounded-pill w-100 fw-bold py-3 shadow d-flex align-items-center justify-content-center gap-2 mt-2"
+                                        type="submit">
+                                        <i class="bi bi-send-fill"></i>
+                                        <span class="">Kirim Laporan Sekarang</span>
+                                    </button>
+                                    <div
+                                        class="d-flex align-items-center justify-content-center gap-3 text-secondary small mt-3">
+                                        <div class="d-flex align-items-center gap-1">
+                                            <i class="bi bi-shield-lock-fill text-success"></i>
+                                            <span class="">Enkripsi TLS 256-Bit</span>
+                                        </div>
+                                        <span class="">•</span>
+                                        <div class="d-flex align-items-center gap-1">
+                                            <i class="bi bi-clock-history text-primary"></i>
+                                            <span class="">Jaminan SLA Verifikasi Max 3 Jam</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Success Alert -->
+                                <div class="col-12">
+                                    <div class="alert alert-success d-none d-flex align-items-center gap-3 mb-0 rounded-3"
+                                        id="reportSuccessNotice">
+                                        <i class="bi bi-check-circle-fill fs-3 text-success"></i>
+                                        <div>
+                                            <h6 class="alert-heading fw-bold mb-1">Laporan Berhasil Terkirim!</h6>
+                                            <p class="mb-0 small">Nomor Registrasi Laporan Anda adalah:
+                                                <strong>#LW-2025-9104</strong>. Salinan tanda terima telah dikirim ke
+                                                notifikasi Anda.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- TICKET TRACKING SECTION -->
+        <section class="py-5 bg-light border-top border-bottom border-light-subtle" id="lacak-status">
+            <div class="container py-lg-4">
+                <div class="text-center mx-auto mb-5" style="max-width: 680px;">
+                    <span
+                        class="badge bg-secondary-subtle text-secondary-emphasis fw-bold text-uppercase mb-2 px-3 py-1 rounded-pill bg-primary bg-opacity-10">Transparansi
+                        Real-Time</span>
+                    <h2 class="fw-bold text-dark">Lacak Status Pengaduan Anda</h2>
+                    <p class="text-secondary small mt-2">
+                        Pantau kemajuan tindak lanjut penanganan keluhan secara transparan, akuntabel, dan berkala tanpa
+                        perlu birokrasi berbelit.
+                    </p>
+                </div>
+                <!-- Ticket Search Bar -->
+                <div class="mx-auto mb-5" style="max-width: 650px;">
+                    <div class="card border-0 shadow-sm rounded-pill p-2 bg-white">
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="d-flex align-items-center ps-3 flex-grow-1">
+                                <i class="bi bi-ticket-perforated text-muted fs-5 me-2"></i>
+                                <input class="form-control border-0 shadow-none px-0 fs-6 fw-medium" id="ticketInput"
+                                    placeholder="Masukkan Nomor Tiket Pengaduan (contoh: #LW-2024-8921)" type="text"
+                                    value="#LW-2024-8921">
+                            </div>
+                            <button
+                                class="btn btn-primary rounded-pill px-4 py-2 fw-semibold d-flex align-items-center gap-2 flex-shrink-0"
+                                onclick="document.getElementById('trackingResultCard').classList.remove('d-none');"
+                                type="button">
+                                <i class="bi bi-search"></i>
+                                <span class="">Cek Tiket</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tracking Result Card -->
+                <div class="mx-auto" style="max-width: 900px;">
+                    <div class="card border-0 shadow-lg rounded-4 p-4 p-md-5 bg-white hover-lift"
+                        id="trackingResultCard">
+                        <!-- Result Card Header -->
+                        <div
+                            class="p-4 rounded-4 bg-light border border-light-subtle d-flex justify-content-between align-items-start w-100 flex-column flex-md-row gap-3 mb-4">
+                            <div>
+                                <div class="d-flex align-items-center gap-2 mb-2">
+                                    <span
+                                        class="badge bg-white text-dark border px-2 py-1 font-monospace fw-bold">#LW-2024-8921</span>
+                                    <span
+                                        class="badge text-primary border border-primary-subtle px-3 py-1 rounded-pill d-inline-flex align-items-center gap-1.5 bg-primary bg-opacity-10">
+                                        <span class="p-1 bg-primary rounded-circle d-inline-block"></span>
+                                        <span class="">Diproses Lapangan</span>
+                                    </span>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-2">Perbaikan Lampu Penerangan Jalan Umum Padam di RW 05
+                                </h5>
+                                <div class="d-flex flex-wrap align-items-center gap-3 small text-secondary">
+                                    <span class="">Kategori: <strong class="text-dark">Infrastruktur</strong></span>
+                                    <span class="">•</span>
+                                    <span class="">Tanggal: <strong class="text-dark">24 Oktober 2024</strong></span>
+                                </div>
+                            </div>
+                            <div class="text-md-end border-top border-md-top-0 pt-2 pt-md-0 border-light-subtle">
+                                <small class="text-secondary d-block">Disposisi Instansi:</small>
+                                <span class="fw-bold text-primary">Dinas PUPR &amp; Perhubungan</span>
+                            </div>
+                        </div>
+                        <!-- Stepper Timeline -->
+                        <div class="mb-4">
+                            <div class="text-uppercase small fw-bold text-muted mb-4 tracking-wider">Kronologi
+                                Perjalanan Penanganan</div>
+                            <div class="timeline-stepper d-flex flex-column gap-4">
+                                <!-- Step 1 -->
+                                <div
+                                    class="position-relative d-flex flex-column flex-sm-row justify-content-between gap-1">
+                                    <div class="timeline-step-icon bg-success text-white shadow-sm">
+                                        <i class="bi bi-check-lg small"></i>
+                                    </div>
+                                    <div class="pe-3">
+                                        <div class="fw-bold text-dark small">Step 1: Laporan Diterima &amp; Verifikasi
+                                            Sistem</div>
+                                        <div class="text-secondary small mt-1">Dokumen dan bukti fisik diterima lengkap
+                                            oleh sistem pusat pengaduan terpadu.</div>
+                                    </div>
+                                    <span class="text-muted small text-nowrap">24 Okt 2024, 08:30 WIB</span>
+                                </div>
+                                <!-- Step 2 -->
+                                <div
+                                    class="position-relative d-flex flex-column flex-sm-row justify-content-between gap-1">
+                                    <div class="timeline-step-icon bg-success text-white shadow-sm">
+                                        <i class="bi bi-check-lg small"></i>
+                                    </div>
+                                    <div class="pe-3">
+                                        <div class="fw-bold text-dark small">Step 2: Disposisi ke Dinas PUPR &amp;
+                                            Wilayah Sektor</div>
+                                        <div class="text-secondary small mt-1">Tim administrator menugaskan Suku Dinas
+                                            Penerangan Jalan Kota untuk inspeksi fisik.</div>
+                                    </div>
+                                    <span class="text-muted small text-nowrap">24 Okt 2024, 11:15 WIB</span>
+                                </div>
+                                <!-- Step 3 -->
+                                <div
+                                    class="position-relative d-flex flex-column flex-sm-row justify-content-between gap-1">
+                                    <div
+                                        class="timeline-step-icon bg-primary text-white shadow-sm border border-3 border-primary-subtle">
+                                        <span class="p-1 bg-white rounded-circle d-inline-block"></span>
+                                    </div>
+                                    <div class="pe-3">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="fw-bold text-primary small">Step 3: Petugas Turun ke
+                                                Lapangan</span>
+                                            <span
+                                                class="badge text-primary rounded-pill bg-primary bg-opacity-10">Sedang
+                                                Berjalan</span>
+                                        </div>
+                                        <div class="text-secondary small mt-1">Armada teknisi 03 sedang melakukan
+                                            penggantian trafo dan kabel optik di lokasi tiang RW 05.</div>
+                                    </div>
+                                    <span class="fw-semibold text-primary small text-nowrap">25 Okt 2024, 09:00
+                                        WIB</span>
+                                </div>
+                                <!-- Step 4 -->
+                                <div
+                                    class="position-relative d-flex flex-column flex-sm-row justify-content-between gap-1 opacity-50">
+                                    <div class="timeline-step-icon bg-light text-secondary border">
+                                        <i class="bi bi-circle small"></i>
+                                    </div>
+                                    <div class="pe-3">
+                                        <div class="fw-medium text-secondary small">Step 4: Selesai &amp; Tindak Lanjut
+                                            Terverifikasi</div>
+                                        <div class="text-muted small mt-1">Pengujian fungsional lampu malam dan
+                                            penandatanganan berita acara penyelesaian.</div>
+                                    </div>
+                                    <span class="text-muted small text-nowrap">Estimasi: Hari Ini</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- CRITICAL LAYOUT FIX: Action Button flush right -->
+                        <div class="d-flex justify-content-end w-100 pt-3 border-top border-light-subtle">
+                            <button
+                                class="btn btn-light border text-dark btn-sm rounded-3 px-4 py-2 d-inline-flex align-items-center gap-2"
+                                type="button">
+                                <i class="bi bi-file-earmark-pdf-fill text-danger"></i>
+                                <span class="fw-semibold">Unduh Bukti PDF</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- NEWS & FOLLOW-UP SECTION -->
+        <section class="py-5 bg-white" id="berita-info-publik">
+            <div class="container py-lg-4">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-5">
+                    <div style="max-width: 600px;">
+                        <span
+                            class="badge text-primary fw-bold text-uppercase mb-2 px-3 py-1 rounded-pill bg-primary bg-opacity-10">Keterbukaan
+                            Informasi Publik</span>
+                        <h2 class="fw-bold text-dark">Berita &amp; Tindak Lanjut Publik</h2>
+                        <p class="text-secondary small mt-2 mb-0">
+                            Transparansi kabar penanganan dan pengumuman pemeliharaan fasilitas umum terkini dari
+                            laporan masyarakat.
+                        </p>
+                    </div>
+                    <a class="text-decoration-none fw-bold text-primary small d-inline-flex align-items-center gap-1"
+                        href="#">
+                        <span class="">Lihat Seluruh Arsip Publik</span>
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="row g-4">
+                    <!-- News Card 1 -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden hover-lift">
+                            <div class="position-relative" style="aspect-ratio: 16/9;">
+                                <img alt="Perbaikan aspal jalan raya" class="w-100 h-100 object-fit-cover"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjlQ8tMS6abuFP0ONZNSJMs7CvmfQqEAXMI2Q-Zc3h-cLbcLd789W1E3PbSDSunny-P3-KwJbepknyAFA5buVaaejoGTaglvfB6BwLftIgXSBpkpyrlIFuYAMQWv4d9RxYhlqThAE68o00IYdALGPhyWtZ_4ZcXMtapYyiBwyMFi6Qa0t1J7nmE7VrEJFc7ZTvM6Wj91X01w55wvWnXl_iOIRqQhUy7AdQ3TD6ar_Z1kRK-nzXM2Hz1Q">
+                                <span
+                                    class="position-absolute top-0 start-0 m-3 badge bg-white text-dark shadow-sm rounded-pill px-3 py-1 fw-semibold bg-primary bg-opacity-10">Infrastruktur</span>
+                            </div>
+                            <div class="card-body p-4 d-flex flex-column justify-content-between">
+                                <div>
+                                    <small class="text-muted d-block mb-2">23 Okt 2024 • Bina Marga</small>
+                                    <h6 class="card-title fw-bold text-dark mb-2">Perbaikan Total Aspal Jalan Protokol
+                                        Selesai Tepat Waktu</h6>
+                                    <p class="card-text text-secondary small">
+                                        Menanggapi 14 aduan warga terkait lubang jalan di lingkar selatan, tim tuntas
+                                        melakukan perataan sepanjang 1,2 kilometer.
+                                    </p>
+                                </div>
+                                <a class="text-decoration-none fw-bold text-primary small d-inline-flex align-items-center gap-1 mt-3"
+                                    href="#">
+                                    <span class="">Baca Selengkapnya</span>
+                                    <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- News Card 2 -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden hover-lift">
+                            <div class="position-relative" style="aspect-ratio: 16/9;">
+                                <img alt="Tempat sampah umum rapi" class="w-100 h-100 object-fit-cover"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAw9JshhuyAlxZ7vNi_xklUb-6wKvy-4In_BwlaGnGrFGoz9EBbEn5npidgh2EZqjmobymCnCtH8LGq_XEt2zENLCa0Anr0zqy8gWVx_LQ1kh1Kzcmf8YSCj0Ef6wgWvb5QrmLahy_zhzy7DCBO6wdYVrlSggSb_MaofwqKgy_sHmP7vUgl4ZrddtpWr7-HmMEDjJ5EI6vFlKQefHzCfiSUPcNLRLWKklQ61JcXy8d8p-t76MWZJo_-zQ">
+                                <span
+                                    class="position-absolute top-0 start-0 m-3 badge bg-white text-dark shadow-sm rounded-pill px-3 py-1 fw-semibold bg-primary bg-opacity-10">Lingkungan</span>
+                            </div>
+                            <div class="card-body p-4 d-flex flex-column justify-content-between">
+                                <div>
+                                    <small class="text-muted d-block mb-2">21 Okt 2024 • Dinas Lingkungan Hidup</small>
+                                    <h6 class="card-title fw-bold text-dark mb-2">Penambahan 50 Titik Kontainer Sampah
+                                        di Area Pasar Sentral</h6>
+                                    <p class="card-text text-secondary small">
+                                        Upaya penuntasan titik pembuangan liar berhasil dieksekusi dengan penyediaan
+                                        armada dan sarana pilah baru.
+                                    </p>
+                                </div>
+                                <a class="text-decoration-none fw-bold text-primary small d-inline-flex align-items-center gap-1 mt-3"
+                                    href="#">
+                                    <span class="">Baca Selengkapnya</span>
+                                    <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- News Card 3 -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden hover-lift">
+                            <div class="position-relative" style="aspect-ratio: 16/9;">
+                                <img alt="Petugas menertibkan lalu lintas" class="w-100 h-100 object-fit-cover"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGFBNpEsAsMnDVyFilie_54efr4POY4mv4935tfK-Cj0OsYArlQ4NLeeuz9hWzAjqLcbzx1HYcbv8zzaBBhPbks1KMwoUr_NDpQgwcCiI7p1BgpmajQA4GX5zchF-Yi6mWYKIq_N5C0z1cxdurXH6NuD-WEr08SxVWkWLwK_XUtZ5KdGgpC_HAiypFls-jwHBFP6V2avi4IY3N0Z0GqeuHmLBILXs-Td5X6W6BNQI8VgKkjenC11Ap6w">
+                                <span
+                                    class="position-absolute top-0 start-0 m-3 badge bg-white text-dark shadow-sm rounded-pill px-3 py-1 fw-semibold bg-primary bg-opacity-10">Keamanan</span>
+                            </div>
+                            <div class="card-body p-4 d-flex flex-column justify-content-between">
+                                <div>
+                                    <small class="text-muted d-block mb-2">19 Okt 2024 • Satpol PP &amp; Dishub</small>
+                                    <h6 class="card-title fw-bold text-dark mb-2">Rekayasa Lalu Lintas &amp; Penertiban
+                                        Parkir Liar Simpang Lima</h6>
+                                    <p class="card-text text-secondary small">
+                                        Penataan trotoar dan relokasi kantong parkir formal memulihkan kelancaran arus
+                                        lalu lintas jam sibuk hingga 42%.
+                                    </p>
+                                </div>
+                                <a class="text-decoration-none fw-bold text-primary small d-inline-flex align-items-center gap-1 mt-3"
+                                    href="#">
+                                    <span class="">Baca Selengkapnya</span>
+                                    <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- EMERGENCY HELPLINE BANNER -->
+        <section class="py-5 bg-light border-top border-light-subtle">
+            <div class="container">
+                <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-white hover-lift">
+                    <div class="row align-items-center g-4">
+                        <div class="col-lg-6">
+                            <div
+                                class="d-inline-flex align-items-center gap-2 text-primary fw-bold text-uppercase small mb-2">
+                                <i class="bi bi-headset"></i>
+                                <span class="">Bantuan Masyarakat Cepat</span>
+                            </div>
+                            <h3 class="fw-bold text-dark mb-2">Butuh Panduan Pelaporan atau Mengalami Kendala Darurat?
+                            </h3>
+                            <p class="text-secondary small mb-0">
+                                Tim posko siaga respon cepat kami siap membimbing Anda dalam melampirkan berkas dan
+                                memastikan laporan terdisposisi ke dinas berwenang.
+                            </p>
+                        </div>
+                        <div
+                            class="col-lg-6 d-flex flex-column flex-sm-row justify-content-lg-end align-items-center gap-3">
+                            <a class="btn btn-primary rounded-pill px-4 py-2 fw-semibold shadow-sm d-flex align-items-center justify-content-center gap-2 text-nowrap"
+                                href="tel:112">
+                                <i class="bi bi-telephone-fill"></i>
+                                <span class="">Panggilan Darurat 112</span>
+                            </a>
+                            <a class="btn btn-light border rounded-pill px-4 py-2 fw-semibold text-secondary d-flex align-items-center justify-content-center gap-2 text-nowrap"
+                                href="#">
+                                <i class="bi bi-book-half"></i>
+                                <span class="">Buku Panduan SOP</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- FOOTER (#0f172a Deep Navy) -->
+    <footer class="bg-navy text-white-50 pt-5 pb-4">
+        <div class="container">
+            <div class="row g-5 pb-5 border-bottom border-secondary border-opacity-25">
+                <!-- Col 1 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="d-flex align-items-center gap-2 text-white fw-bold fs-5 mb-3">
+                        <div class="d-flex align-items-center justify-content-center bg-primary text-white rounded-3"
+                            style="width: 32px; height: 32px;">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                        <span class="">LaporWarga</span>
+                    </div>
+                    <p class="small text-secondary lh-base mb-3 text-light text-opacity-75">
+                        Sistem Pengelolaan Pengaduan Pelayanan Publik Terpadu. Menghubungkan aspirasi dan aduan warga
+                        dengan instansi pemerintah terkait secara cepat, transparan, dan akuntabel.
+                    </p>
+                    <div class="d-flex align-items-center gap-2 small text-light text-opacity-75">
+                        <span class="p-1 bg-success rounded-circle d-inline-block"></span>
+                        <span class="">SLA Penanganan Rata-rata: 24 Jam</span>
+                    </div>
+                </div>
+                <!-- Col 2 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <h6 class="text-white fw-bold text-uppercase tracking-wider small mb-3">Layanan Darurat 24/7</h6>
+                    <p class="small text-light text-opacity-75 mb-3">
+                        Untuk situasi kritis yang membutuhkan intervensi kepolisian, medis, atau pemadam kebakaran:
+                    </p>
+                    <div class="p-3 rounded-3 bg-dark bg-opacity-50 border border-secondary border-opacity-25 mb-3">
+                        <span class="d-block small text-light text-opacity-50 text-uppercase">Pusat Kontak
+                            Terpadu</span>
+                        <span class="fs-4 fw-bold text-primary">112 (Bebas Pulsa)</span>
+                    </div>
+                    <div class="d-flex flex-column gap-1 small text-light text-opacity-75">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-telephone"></i>
+                            <span class="">Halo Warga: (021) 1500-888</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-envelope"></i>
+                            <span class="">aduan@laporwarga.go.id</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Col 3 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <h6 class="text-white fw-bold text-uppercase tracking-wider small mb-3">Kategori Pengaduan</h6>
+                    <ul class="list-unstyled d-flex flex-column gap-2 small text-light text-opacity-75 mb-0">
+                        <li class=""><a class="text-decoration-none text-light text-opacity-75 hover:text-white"
+                                href="#buat-laporan">Infrastruktur Jalan &amp; Jembatan</a></li>
+                        <li class=""><a class="text-decoration-none text-light text-opacity-75 hover:text-white"
+                                href="#buat-laporan">Kesehatan &amp; Sanitasi Lingkungan</a></li>
+                        <li class=""><a class="text-decoration-none text-light text-opacity-75 hover:text-white"
+                                href="#buat-laporan">Ketertiban &amp; Keamanan Umum</a></li>
+                        <li class=""><a class="text-decoration-none text-light text-opacity-75 hover:text-white"
+                                href="#buat-laporan">Bantuan Sosial &amp; Kesejahteraan</a></li>
+                        <li class=""><a class="text-decoration-none text-light text-opacity-75 hover:text-white"
+                                href="#buat-laporan">Pelayanan Administrasi Kependudukan</a></li>
+                    </ul>
+                </div>
+                <!-- Col 4 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <h6 class="text-white fw-bold text-uppercase tracking-wider small mb-3">Aksesibilitas &amp; Standar
+                    </h6>
+                    <p class="small text-light text-opacity-75 mb-3">
+                        Portal ini dirancang memenuhi pedoman WCAG 2.1 Level AA untuk menjamin kemudahan akses bagi
+                        seluruh lapisan masyarakat dan penyandang disabilitas.
+                    </p>
+                    <span class="small fw-semibold text-white d-block mb-2">Kanal Terhubung</span>
+                    <div class="d-flex gap-2">
+                        <a class="btn btn-outline-secondary btn-sm rounded-3 text-light border-opacity-50" href="#"
+                            title="Informasi Publik"><i class="bi bi-globe"></i></a>
+                        <a class="btn btn-outline-secondary btn-sm rounded-3 text-light border-opacity-50" href="#"
+                            title="Notifikasi Siaran"><i class="bi bi-broadcast"></i></a>
+                        <a class="btn btn-outline-secondary btn-sm rounded-3 text-light border-opacity-50" href="#"
+                            title="Pusat Bantuan"><i class="bi bi-headset"></i></a>
+                        <a class="btn btn-outline-secondary btn-sm rounded-3 text-light border-opacity-50" href="#"
+                            title="Statistik &amp; Laporan Data"><i class="bi bi-graph-up"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- Copyright Bar -->
+            <div
+                class="pt-4 d-flex flex-column flex-md-row justify-content-between align-items-center gap-3 small text-secondary">
+                <div class="d-flex flex-wrap gap-3">
+                    <a class="text-decoration-none text-secondary" href="#">Kebijakan Privasi</a>
+                    <span class="">•</span>
+                    <a class="text-decoration-none text-secondary" href="#">Syarat &amp; Ketentuan</a>
+                    <span class="">•</span>
+                    <a class="text-decoration-none text-secondary" href="#">Standar Pelayanan (SPP)</a>
+                    <span class="">•</span>
+                    <a class="text-decoration-none text-secondary" href="#">Peta Situs</a>
+                </div>
+                <div class="">
+                    © 2025 Portal LaporWarga • Pemerintah Republik Indonesia. Hak Cipta Dilindungi.
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Bootstrap 5.3.3 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

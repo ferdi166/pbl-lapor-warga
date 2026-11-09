@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="id" style="">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="web_dashboard" name="shell-type">
+    <title>LaporWarga Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/data-pengaduan.css">
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="p-3 d-flex align-items-center gap-2 border-bottom">
+            <div class="bg-primary text-white rounded-3 p-2 d-flex align-items-center justify-content-center shadow-sm"
+                style="width: 38px; height: 38px;"><i class="bi bi-shield-check fs-5"></i></div>
+            <div>
+                <div class="fw-bold text-dark lh-sm">LaporWarga</div><small
+                    class="text-primary text-uppercase fw-semibold"
+                    style="font-size: 0.7rem; letter-spacing: 0.05em;">Admin Portal</small>
+            </div>
+        </div>
+        <div class="p-3 flex-grow-1 overflow-y-auto">
+            <div class="text-uppercase text-secondary fw-bold px-2 mb-2"
+                style="font-size: 0.68rem; letter-spacing: 0.08em;">Menu Utama</div>
+            <nav class="nav flex-column sidebar-nav" data-active-classes="active"><a class="nav-link"
+                    data-path="dashboard" href="#"><i class="bi bi-grid-1x2-fill"></i><span
+                        class="">Dashboard</span></a><a class="nav-link active" data-path="data-pengaduan" href="#"><i
+                        class="bi bi-chat-left-text"></i><span class="">Data Pengaduan</span></a><a class="nav-link"
+                    data-path="tanggapan" href="#"><i class="bi bi-reply-all"></i><span class="">Tanggapan</span></a><a
+                    class="nav-link" data-path="berita" href="#"><i class="bi bi-newspaper"></i><span
+                        class="">Berita</span></a></nav>
+        </div>
+        <div class="sidebar-footer">
+            <nav class="nav flex-column sidebar-nav" data-active-classes="active"><a class="nav-link"
+                    data-path="pengaturan" href="#"><i class="bi bi-gear"></i><span class="">Pengaturan</span></a><a
+                    class="nav-link text-danger" data-path="login" href="#"><i
+                        class="bi bi-box-arrow-right text-danger"></i><span class="">Keluar</span></a></nav>
+        </div>
+    </aside>
+    <div class="main-wrapper">
+        <header class="top-navbar px-4 d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-3"><button aria-label="Menu Toggle"
+                    class="btn btn-sm btn-light d-lg-none border" type="button"><i class="bi bi-list fs-5"></i></button>
+                <div>
+                    <h6 class="mb-0 fw-bold text-dark">Dashboard Utama</h6><small class="text-muted"
+                        style="font-size: 0.75rem;"><i class="bi bi-calendar3 me-1"></i>Senin, 24 Mei 2025 • Kelurahan
+                        Merdeka</small>
+                </div>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <div class="position-relative d-none d-md-block" style="max-width: 260px;"><i
+                        class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-secondary"
+                        style="font-size: 0.85rem;"></i><input
+                        class="form-control form-control-sm ps-5 bg-light border-0"
+                        placeholder="Cari nomor tiket, NIK..." style="border-radius: 20px; font-size: 0.8125rem;"
+                        type="search"></div>
+                <div class="position-relative"><button aria-label="Notifikasi"
+                        class="btn btn-light rounded-circle p-2 position-relative text-secondary border-0 shadow-none"
+                        type="button"><i class="bi bi-bell fs-6"></i></button></div>
+                <div class="vr h-50 mx-1"></div>
+                <div class="d-flex align-items-center gap-2">
+                    <div class="avatar-initial">AK</div>
+                    <div class="d-none d-sm-block text-start">
+                        <div class="fw-bold text-dark lh-1" style="font-size: 0.85rem;">Admin Kelurahan</div><small
+                            class="text-muted" style="font-size: 0.72rem;">admin@merdeka.go.id</small>
+                    </div><i class="bi bi-chevron-down text-muted fs-6 ms-1"></i>
+                </div>
+            </div>
+        </header>
+        <main class="flex-grow-1 p-4">
+            <div class="flex flex-col w-full">
+                <!-- Content Header Area -->
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+                    <div>
+                        <div class="d-flex align-items-center gap-2 mb-1">
+                            <h4 class="fw-bold text-dark mb-0">Data Pengaduan Warga</h4>
+                            <span
+                                class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-2.5 py-1"
+                                style="font-size: 0.72rem; font-weight: 600;">1,428 Total Masuk</span>
+                        </div>
+                        <p class="text-secondary small mb-0">Kelola, filter, dan pantau seluruh daftar laporan masuk
+                            secara terstruktur.</p>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <button
+                            class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-2 px-3 py-2 bg-white shadow-sm border"
+                            id="btnRefreshData" type="button">
+                            <i class="bi bi-arrow-clockwise"></i>
+                            <span class="">Segarkan</span>
+                        </button>
+                        <div class="dropdown">
+                            <button aria-expanded="false"
+                                class="btn btn-primary btn-sm d-flex align-items-center gap-2 px-3 py-2 shadow-sm"
+                                data-bs-toggle="dropdown" type="button">
+                                <i class="bi bi-download"></i>
+                                <span class="">Ekspor Laporan</span>
+                                <i class="bi bi-chevron-down" style="font-size: 0.75rem;"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 py-1"
+                                style="font-size: 0.85rem;">
+                                <li class=""><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#"><i
+                                            class="bi bi-file-earmark-spreadsheet text-success"></i> Ekspor format Excel
+                                        (.xlsx)</a></li>
+                                <li class=""><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#"><i
+                                            class="bi bi-file-earmark-pdf text-danger"></i> Unduh Rekap PDF (.pdf)</a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider my-1">
+                                </li>
+                                <li class=""><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#"><i
+                                            class="bi bi-printer text-secondary"></i> Cetak Lembar Kerja</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Quick Filter Toolbar Card -->
+                <div class="card border-0 shadow-sm rounded-3 p-3 mb-3 bg-white">
+                    <div class="row g-2 align-items-center">
+                        <!-- Search Input -->
+                        <div class="col-12 col-lg-4 col-xl-3">
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text bg-light border-0 text-muted ps-3">
+                                    <i class="bi bi-search"></i>
+                                </span>
+                                <input class="form-control bg-light border-0 py-2" id="searchInput"
+                                    placeholder="Cari ID tiket, kata kunci, atau lokasi..."
+                                    style="font-size: 0.8125rem;" type="text">
+                            </div>
+                        </div>
+                        <!-- Category Filter -->
+                        <div class="col-6 col-sm-4 col-lg-2">
+                            <select class="form-select form-select-sm bg-light border-0 py-2" id="filterCategory"
+                                style="font-size: 0.8125rem;">
+                                <option selected="" value="">Semua Kategori</option>
+                                <option value="Infrastruktur">Infrastruktur</option>
+                                <option value="Kebersihan">Kebersihan</option>
+                                <option value="Keamanan">Keamanan</option>
+                                <option value="Fasilitas Umum">Fasilitas Umum</option>
+                            </select>
+                        </div>
+                        <!-- Status Filter -->
+                        <div class="col-6 col-sm-4 col-lg-2">
+                            <select class="form-select form-select-sm bg-light border-0 py-2" id="filterStatus"
+                                style="font-size: 0.8125rem;">
+                                <option selected="" value="">Semua Status</option>
+                                <option value="Menunggu Verifikasi">Menunggu Verifikasi</option>
+                                <option value="Sedang Diproses">Sedang Diproses</option>
+                                <option value="Laporan Selesai">Laporan Selesai</option>
+                                <option value="Ditolak">Ditolak</option>
+                            </select>
+                        </div>
+                        <!-- Date Range Filter -->
+                        <div class="col-12 col-sm-4 col-lg-2">
+                            <select class="form-select form-select-sm bg-light border-0 py-2" id="filterDateRange"
+                                style="font-size: 0.8125rem;">
+                                <option selected="" value="all">Rentang: Semua Waktu</option>
+                                <option value="today">Hari Ini</option>
+                                <option value="7days">7 Hari Terakhir</option>
+                                <option value="30days">30 Hari Terakhir</option>
+                                <option value="custom">Kustomisasi Tanggal...</option>
+                            </select>
+                        </div>
+                        <!-- Filter Actions -->
+                        <div class="col-12 col-lg-auto ms-lg-auto d-flex align-items-center gap-2 justify-content-end">
+                            <button
+                                class="btn btn-sm btn-link text-decoration-none text-secondary d-flex align-items-center gap-1 px-2 py-1"
+                                id="btnResetFilter" title="Reset semua filter" type="button">
+                                <i class="bi bi-arrow-counterclockwise"></i>
+                                <span style="font-size: 0.8125rem;" class="">Reset</span>
+                            </button>
+                            <div class="vr d-none d-lg-block h-50 mx-1"></div>
+                            <span class="badge bg-light text-secondary border px-2 py-1.5 d-none d-md-inline-block"
+                                style="font-weight: 500; font-size: 0.75rem;">
+                                <i class="bi bi-funnel-fill text-primary me-1"></i>Filter Aktif: <strong
+                                    class="text-dark" id="activeFilterCount">0</strong>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Complaint Data Table Card -->
+                <div class="card border-0 shadow-sm rounded-3 overflow-hidden bg-white mb-4">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0" id="complaintsTable"
+                            style="min-width: 900px;">
+                            <thead class="table-light text-uppercase border-bottom"
+                                style="font-size: 0.72rem; letter-spacing: 0.05em;">
+                                <tr class="">
+                                    <th class="py-3 px-3 text-secondary fw-bold text-nowrap" scope="col"
+                                        style="width: 140px;">ID Tiket</th>
+                                    <th class="py-3 px-3 text-secondary fw-bold text-nowrap" scope="col"
+                                        style="width: 180px;">Waktu Masuk</th>
+                                    <th class="py-3 px-3 text-secondary fw-bold text-nowrap" scope="col"
+                                        style="width: 150px;">Kategori</th>
+                                    <th class="py-3 px-3 text-secondary fw-bold text-nowrap" scope="col">Judul Laporan
+                                        &amp; Lokasi</th>
+                                    <th class="py-3 px-3 text-secondary fw-bold text-nowrap" scope="col"
+                                        style="width: 190px;">Status</th>
+                                    <th class="py-3 px-3 text-secondary fw-bold text-end pe-4 text-nowrap" scope="col"
+                                        style="width: 140px;">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y text-dark" style="font-size: 0.85rem;">
+                                <tr class="table-row-item">
+                                    <td class="px-3 py-3 text-nowrap"><span
+                                            class="fw-bold text-primary text-nowrap font-monospace">#LW-8921</span></td>
+                                    <td class="px-3 py-3 text-secondary text-nowrap">
+                                        <div class="d-flex flex-column"><span class="fw-semibold text-dark">29 Okt
+                                                2024</span><span class="small text-muted">08:30 WIB</span></div>
+                                    </td>
+                                    <td class="px-3 py-3 text-nowrap"><span
+                                            class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-2.5 py-1 text-nowrap"><i
+                                                class="bi bi-tools me-1"></i>Infrastruktur</span></td>
+                                    <td class="px-3 py-3">
+                                        <div class="fw-semibold text-dark mb-0 text-truncate" style="max-width: 380px;">
+                                            Lampu PJU Padam di Gang Mawar</div>
+                                        <div class="text-muted small d-flex align-items-center gap-1 text-truncate"
+                                            style="max-width: 380px; font-size: 0.78rem;"><i
+                                                class="bi bi-geo-alt-fill text-danger flex-shrink-0"></i><span
+                                                class="text-truncate">Jl. Taman Sari No. 14, RT 05/RW 02, Kel.
+                                                Merdeka</span></div>
+                                    </td>
+                                    <td class="px-3 py-3 text-nowrap"><span
+                                            class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle rounded-pill px-2.5 py-1 d-inline-flex align-items-center gap-1 text-nowrap"><i
+                                                class="bi bi-hourglass-split"></i><span class="">Menunggu
+                                                Verifikasi</span></span></td>
+                                    <td class="px-3 py-3 text-end pe-4 text-nowrap"><button
+                                            class="btn btn-sm btn-primary px-3 rounded-2 shadow-sm d-inline-flex align-items-center gap-1 py-1 text-nowrap"
+                                            style="font-size: 0.8125rem;" type="button"><span class="">Tindak
+                                                Lanjuti</span><i class="bi bi-arrow-right-short fs-6 lh-1"></i></button>
+                                    </td>
+                                </tr>
+                                <tr class="table-row-item">
+                                    <td class="px-3 py-3 text-nowrap"><span
+                                            class="fw-bold text-primary text-nowrap font-monospace">#LW-8920</span></td>
+                                    <td class="px-3 py-3 text-secondary text-nowrap">
+                                        <div class="d-flex flex-column"><span class="fw-semibold text-dark">29 Okt
+                                                2024</span><span class="small text-muted">07:15 WIB</span></div>
+                                    </td>
+                                    <td class="px-3 py-3 text-nowrap"><span
+                                            class="badge bg-success-subtle text-success-emphasis border border-success-subtle rounded-pill px-2.5 py-1 text-nowrap"><i
+                                                class="bi bi-trash3 me-1"></i>Kebersihan</span></td>
+                                    <td class="px-3 py-3">
+                                        <div class="fw-semibold text-dark mb-0 text-truncate" style="max-width: 380px;">
+                                            Tumpukan Sampah Liar Menggunung Dekat Pasar</div>
+                                        <div class="text-muted small d-flex align-items-center gap-1 text-truncate"
+                                            style="max-width: 380px; font-size: 0.78rem;"><i
+                                                class="bi bi-geo-alt-fill text-danger flex-shrink-0"></i><span
+                                                class="text-truncate">Jl. Kenanga Timur No. 8, Belakang Kios Sayur, RT
+                                                02/RW 04</span></div>
+                                    </td>
+                                    <td class="px-3 py-3 text-nowrap"><span
+                                            class="badge bg-info-subtle text-info-emphasis border border-info-subtle rounded-pill px-2.5 py-1 d-inline-flex align-items-center gap-1 text-nowrap"><i
+                                                class="bi bi-gear-wide-connected"></i><span class="">Sedang
+                                                Diproses</span></span></td>
+                                    <td class="px-3 py-3 text-end pe-4 text-nowrap"><button
+                                            class="btn btn-sm btn-primary px-3 rounded-2 shadow-sm d-inline-flex align-items-center gap-1 py-1 text-nowrap"
+                                            style="font-size: 0.8125rem;" type="button"><span class="">Tindak
+                                                Lanjuti</span><i class="bi bi-arrow-right-short fs-6 lh-1"></i></button>
+                                    </td>
+                                </tr>
+                                <tr class="table-row-item">
+                                    <td class="px-3 py-3 text-nowrap"><span
+                                            class="fw-bold text-primary text-nowrap font-monospace">#LW-8919</span></td>
+                                    <td class="px-3 py-3 text-secondary text-nowrap">
+                                        <div class="d-flex flex-column"><span class="fw-semibold text-dark">28 Okt
+                                                2024</span><span class="small text-muted">21:40 WIB</span></div>
+                                    </td>
+                                    <td class="px-3 py-3 text-nowrap"><span
+                                            class="badge bg-danger-subtle text-danger-emphasis border border-danger-subtle rounded-pill px-2.5 py-1 text-nowrap"><i
+                                                class="bi bi-shield-exclamation me-1"></i>Keamanan</span></td>
+                                    <td class="px-3 py-3">
+                                        <div class="fw-semibold text-dark mb-0 text-truncate" style="max-width: 380px;">
+                                            Portal Komplek Dirusak dan Balap Liar Remaja</div>
+                                        <div class="text-muted small d-flex align-items-center gap-1 text-truncate"
+                                            style="max-width: 380px; font-size: 0.78rem;"><i
+                                                class="bi bi-geo-alt-fill text-danger flex-shrink-0"></i><span
+                                                class="text-truncate">Perumahan Graha Asri Blok C-D, RT 08/RW 03, Kel.
+                                                Merdeka</span></div>
+                                    </td>
+                                    <td class="px-3 py-3 text-nowrap"><span
+                                            class="badge bg-info-subtle text-info-emphasis border border-info-subtle rounded-pill px-2.5 py-1 d-inline-flex align-items-center gap-1 text-nowrap"><i
+                                                class="bi bi-gear-wide-connected"></i><span class="">Sedang
+                                                Diproses</span></span></td>
+                                    <td class="px-3 py-3 text-end pe-4 text-nowrap"><button
+                                            class="btn btn-sm btn-primary px-3 rounded-2 shadow-sm d-inline-flex align-items-center gap-1 py-1 text-nowrap"
+                                            style="font-size: 0.8125rem;" type="button"><span class="">Tindak
+                                                Lanjuti</span><i class="bi bi-arrow-right-short fs-6 lh-1"></i></button>
+                                    </td>
+                                </tr>
+                                <tr class="table-row-item">
+                                    <td class="px-3 py-3 text-nowrap"><span
+                                            class="fw-bold text-primary text-nowrap font-monospace">#LW-8915</span></td>
+                                    <td class="px-3 py-3 text-secondary text-nowrap">
+                                        <div class="d-flex flex-column"><span class="fw-semibold text-dark">28 Okt
+                                                2024</span><span class="small text-muted">16:05 WIB</span></div>
+                                    </td>
+                                    <td class="px-3 py-3 text-nowrap"><span
+                                            class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-2.5 py-1 text-nowrap"><i
+                                                class="bi bi-tools me-1"></i>Infrastruktur</span></td>
+                                    <td class="px-3 py-3">
+                                        <div class="fw-semibold text-dark mb-0 text-truncate" style="max-width: 380px;">
+                                            Jalan Aspal Berlubang Dalam Membahayakan Pemotor</div>
+                                        <div class="text-muted small d-flex align-items-center gap-1 text-truncate"
+                                            style="max-width: 380px; font-size: 0.78rem;"><i
+                                                class="bi bi-geo-alt-fill text-danger flex-shrink-0"></i><span
+                                                class="text-truncate">Jl. Raya Merdeka KM 4.2 Depan SPBU 34, RT 01/RW
+                                                01</span></div>
+                                    </td>
+                                    <td class="px-3 py-3 text-nowrap"><span
+                                            class="badge bg-success-subtle text-success-emphasis border border-success-subtle rounded-pill px-2.5 py-1 d-inline-flex align-items-center gap-1 text-nowrap"><i
+                                                class="bi bi-check2-circle"></i><span class="">Laporan
+                                                Selesai</span></span></td>
+                                    <td class="px-3 py-3 text-end pe-4 text-nowrap"><button
+                                            class="btn btn-sm btn-outline-secondary px-3 rounded-2 shadow-none d-inline-flex align-items-center gap-1 py-1 text-nowrap"
+                                            style="font-size: 0.8125rem;" type="button"><i class="bi bi-eye"></i><span
+                                                class="">Lihat Detail</span></button></td>
+                                </tr>
+                                <tr class="table-row-item">
+                                    <td class="px-3 py-3 text-nowrap"><span
+                                            class="fw-bold text-primary text-nowrap font-monospace">#LW-8912</span></td>
+                                    <td class="px-3 py-3 text-secondary text-nowrap">
+                                        <div class="d-flex flex-column"><span class="fw-semibold text-dark">28 Okt
+                                                2024</span><span class="small text-muted">14:22 WIB</span></div>
+                                    </td>
+                                    <td class="px-3 py-3 text-nowrap"><span
+                                            class="badge bg-secondary-subtle text-secondary-emphasis border border-secondary-subtle rounded-pill px-2.5 py-1 text-nowrap"><i
+                                                class="bi bi-building me-1"></i>Fasilitas Umum</span></td>
+                                    <td class="px-3 py-3">
+                                        <div class="fw-semibold text-dark mb-0 text-truncate" style="max-width: 380px;">
+                                            Atap Halte Bus Roboh Sebagian Akibat Hujan Deras</div>
+                                        <div class="text-muted small d-flex align-items-center gap-1 text-truncate"
+                                            style="max-width: 380px; font-size: 0.78rem;"><i
+                                                class="bi bi-geo-alt-fill text-danger flex-shrink-0"></i><span
+                                                class="text-truncate">Halte SDN Merdeka 01, Jl. Pendidikan No. 45, RT
+                                                03/RW 05</span></div>
+                                    </td>
+                                    <td class="px-3 py-3 text-nowrap"><span
+                                            class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle rounded-pill px-2.5 py-1 d-inline-flex align-items-center gap-1 text-nowrap"><i
+                                                class="bi bi-hourglass-split"></i><span class="">Menunggu
+                                                Verifikasi</span></span></td>
+                                    <td class="px-3 py-3 text-end pe-4 text-nowrap"><button
+                                            class="btn btn-sm btn-primary px-3 rounded-2 shadow-sm d-inline-flex align-items-center gap-1 py-1 text-nowrap"
+                                            style="font-size: 0.8125rem;" type="button"><span class="">Tindak
+                                                Lanjuti</span><i class="bi bi-arrow-right-short fs-6 lh-1"></i></button>
+                                    </td>
+                                </tr>
+                                <tr class="table-row-item">
+                                    <td class="px-3 py-3 text-nowrap"><span
+                                            class="fw-bold text-primary text-nowrap font-monospace">#LW-8908</span></td>
+                                    <td class="px-3 py-3 text-secondary text-nowrap">
+                                        <div class="d-flex flex-column"><span class="fw-semibold text-dark">27 Okt
+                                                2024</span><span class="small text-muted">19:50 WIB</span></div>
+                                    </td>
+                                    <td class="px-3 py-3 text-nowrap"><span
+                                            class="badge bg-success-subtle text-success-emphasis border border-success-subtle rounded-pill px-2.5 py-1 text-nowrap"><i
+                                                class="bi bi-trash3 me-1"></i>Kebersihan</span></td>
+                                    <td class="px-3 py-3">
+                                        <div class="fw-semibold text-dark mb-0 text-truncate" style="max-width: 380px;">
+                                            Saluran Drainase Mampet Menyebabkan Genangan Air Bau</div>
+                                        <div class="text-muted small d-flex align-items-center gap-1 text-truncate"
+                                            style="max-width: 380px; font-size: 0.78rem;"><i
+                                                class="bi bi-geo-alt-fill text-danger flex-shrink-0"></i><span
+                                                class="text-truncate">Lorong Melati RT 04/RW 01, Samping Musala
+                                                Al-Ikhlas</span></div>
+                                    </td>
+                                    <td class="px-3 py-3 text-nowrap"><span
+                                            class="badge bg-info-subtle text-info-emphasis border border-info-subtle rounded-pill px-2.5 py-1 d-inline-flex align-items-center gap-1 text-nowrap"><i
+                                                class="bi bi-gear-wide-connected"></i><span class="">Sedang
+                                                Diproses</span></span></td>
+                                    <td class="px-3 py-3 text-end pe-4 text-nowrap"><button
+                                            class="btn btn-sm btn-primary px-3 rounded-2 shadow-sm d-inline-flex align-items-center gap-1 py-1 text-nowrap"
+                                            style="font-size: 0.8125rem;" type="button"><span class="">Tindak
+                                                Lanjuti</span><i class="bi bi-arrow-right-short fs-6 lh-1"></i></button>
+                                    </td>
+                                </tr>
+                                <tr class="table-row-item">
+                                    <td class="px-3 py-3 text-nowrap"><span
+                                            class="fw-bold text-primary text-nowrap font-monospace">#LW-8902</span></td>
+                                    <td class="px-3 py-3 text-secondary text-nowrap">
+                                        <div class="d-flex flex-column"><span class="fw-semibold text-dark">27 Okt
+                                                2024</span><span class="small text-muted">11:10 WIB</span></div>
+                                    </td>
+                                    <td class="px-3 py-3 text-nowrap"><span
+                                            class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-2.5 py-1 text-nowrap"><i
+                                                class="bi bi-tools me-1"></i>Infrastruktur</span></td>
+                                    <td class="px-3 py-3">
+                                        <div class="fw-semibold text-dark mb-0 text-truncate" style="max-width: 380px;">
+                                            Dahan Pohon Rindang Menghalangi Kabel Listrik PLN</div>
+                                        <div class="text-muted small d-flex align-items-center gap-1 text-truncate"
+                                            style="max-width: 380px; font-size: 0.78rem;"><i
+                                                class="bi bi-geo-alt-fill text-danger flex-shrink-0"></i><span
+                                                class="text-truncate">Jl. Flamboyan Barat RT 07/RW 03, Kel.
+                                                Merdeka</span></div>
+                                    </td>
+                                    <td class="px-3 py-3 text-nowrap"><span
+                                            class="badge bg-success-subtle text-success-emphasis border border-success-subtle rounded-pill px-2.5 py-1 d-inline-flex align-items-center gap-1 text-nowrap"><i
+                                                class="bi bi-check2-circle"></i><span class="">Laporan
+                                                Selesai</span></span></td>
+                                    <td class="px-3 py-3 text-end pe-4 text-nowrap"><button
+                                            class="btn btn-sm btn-outline-secondary px-3 rounded-2 shadow-none d-inline-flex align-items-center gap-1 py-1 text-nowrap"
+                                            style="font-size: 0.8125rem;" type="button"><i class="bi bi-eye"></i><span
+                                                class="">Lihat Detail</span></button></td>
+                                </tr>
+                                <tr class="table-row-item">
+                                    <td class="px-3 py-3 text-nowrap"><span
+                                            class="fw-bold text-primary text-nowrap font-monospace">#LW-8898</span></td>
+                                    <td class="px-3 py-3 text-secondary text-nowrap">
+                                        <div class="d-flex flex-column"><span class="fw-semibold text-dark">26 Okt
+                                                2024</span><span class="small text-muted">15:30 WIB</span></div>
+                                    </td>
+                                    <td class="px-3 py-3 text-nowrap"><span
+                                            class="badge bg-secondary-subtle text-secondary-emphasis border border-secondary-subtle rounded-pill px-2.5 py-1 text-nowrap"><i
+                                                class="bi bi-building me-1"></i>Fasilitas Umum</span></td>
+                                    <td class="px-3 py-3">
+                                        <div class="fw-semibold text-dark mb-0 text-truncate" style="max-width: 380px;">
+                                            Keran Air Bersih di Taman Pintar Kelurahan Mati Total</div>
+                                        <div class="text-muted small d-flex align-items-center gap-1 text-truncate"
+                                            style="max-width: 380px; font-size: 0.78rem;"><i
+                                                class="bi bi-geo-alt-fill text-danger flex-shrink-0"></i><span
+                                                class="text-truncate">Area Terbuka Hijau Taman Pintar, RT 02/RW
+                                                02</span></div>
+                                    </td>
+                                    <td class="px-3 py-3 text-nowrap"><span
+                                            class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle rounded-pill px-2.5 py-1 d-inline-flex align-items-center gap-1 text-nowrap"><i
+                                                class="bi bi-hourglass-split"></i><span class="">Menunggu
+                                                Verifikasi</span></span></td>
+                                    <td class="px-3 py-3 text-end pe-4 text-nowrap"><button
+                                            class="btn btn-sm btn-primary px-3 rounded-2 shadow-sm d-inline-flex align-items-center gap-1 py-1 text-nowrap"
+                                            style="font-size: 0.8125rem;" type="button"><span class="">Tindak
+                                                Lanjuti</span><i class="bi bi-arrow-right-short fs-6 lh-1"></i></button>
+                                    </td>
+                                </tr>
+                                <tr class="table-row-item">
+                                    <td class="px-3 py-3 text-nowrap"><span
+                                            class="fw-bold text-primary text-nowrap font-monospace">#LW-8895</span></td>
+                                    <td class="px-3 py-3 text-secondary text-nowrap">
+                                        <div class="d-flex flex-column"><span class="fw-semibold text-dark">26 Okt
+                                                2024</span><span class="small text-muted">09:12 WIB</span></div>
+                                    </td>
+                                    <td class="px-3 py-3 text-nowrap"><span
+                                            class="badge bg-danger-subtle text-danger-emphasis border border-danger-subtle rounded-pill px-2.5 py-1 text-nowrap"><i
+                                                class="bi bi-shield-exclamation me-1"></i>Keamanan</span></td>
+                                    <td class="px-3 py-3">
+                                        <div class="fw-semibold text-dark mb-0 text-truncate" style="max-width: 380px;">
+                                            Pencurian Spion Mobil Berulang di Area Parkir Umum</div>
+                                        <div class="text-muted small d-flex align-items-center gap-1 text-truncate"
+                                            style="max-width: 380px; font-size: 0.78rem;"><i
+                                                class="bi bi-geo-alt-fill text-danger flex-shrink-0"></i><span
+                                                class="text-truncate">Lahan Parkir Barat Lapangan Merdeka, RT 06/RW
+                                                04</span></div>
+                                    </td>
+                                    <td class="px-3 py-3 text-nowrap"><span
+                                            class="badge bg-info-subtle text-info-emphasis border border-info-subtle rounded-pill px-2.5 py-1 d-inline-flex align-items-center gap-1 text-nowrap"><i
+                                                class="bi bi-gear-wide-connected"></i><span class="">Sedang
+                                                Diproses</span></span></td>
+                                    <td class="px-3 py-3 text-end pe-4 text-nowrap"><button
+                                            class="btn btn-sm btn-primary px-3 rounded-2 shadow-sm d-inline-flex align-items-center gap-1 py-1 text-nowrap"
+                                            style="font-size: 0.8125rem;" type="button"><span class="">Tindak
+                                                Lanjuti</span><i class="bi bi-arrow-right-short fs-6 lh-1"></i></button>
+                                    </td>
+                                </tr>
+                                <tr class="table-row-item">
+                                    <td class="px-3 py-3 text-nowrap"><span
+                                            class="fw-bold text-primary text-nowrap font-monospace">#LW-8891</span></td>
+                                    <td class="px-3 py-3 text-secondary text-nowrap">
+                                        <div class="d-flex flex-column"><span class="fw-semibold text-dark">25 Okt
+                                                2024</span><span class="small text-muted">13:45 WIB</span></div>
+                                    </td>
+                                    <td class="px-3 py-3 text-nowrap"><span
+                                            class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-2.5 py-1 text-nowrap"><i
+                                                class="bi bi-tools me-1"></i>Infrastruktur</span></td>
+                                    <td class="px-3 py-3">
+                                        <div class="fw-semibold text-dark mb-0 text-truncate" style="max-width: 380px;">
+                                            Tutup Gorong-gorong Rusak dan Terbuka Berbahaya</div>
+                                        <div class="text-muted small d-flex align-items-center gap-1 text-truncate"
+                                            style="max-width: 380px; font-size: 0.78rem;"><i
+                                                class="bi bi-geo-alt-fill text-danger flex-shrink-0"></i><span
+                                                class="text-truncate">Sudut Tikungan Jl. Beringin Indah No. 1, RT 01/RW
+                                                03</span></div>
+                                    </td>
+                                    <td class="px-3 py-3 text-nowrap"><span
+                                            class="badge bg-success-subtle text-success-emphasis border border-success-subtle rounded-pill px-2.5 py-1 d-inline-flex align-items-center gap-1 text-nowrap"><i
+                                                class="bi bi-check2-circle"></i><span class="">Laporan
+                                                Selesai</span></span></td>
+                                    <td class="px-3 py-3 text-end pe-4 text-nowrap"><button
+                                            class="btn btn-sm btn-outline-secondary px-3 rounded-2 shadow-none d-inline-flex align-items-center gap-1 py-1 text-nowrap"
+                                            style="font-size: 0.8125rem;" type="button"><i class="bi bi-eye"></i><span
+                                                class="">Lihat Detail</span></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Table Footer & Civic Pagination -->
+                    <div
+                        class="card-footer bg-white border-top py-3 px-4 d-flex flex-column flex-sm-row justify-content-between align-items-center gap-3">
+                        <div class="text-secondary small">
+                            Menampilkan <span class="fw-semibold text-dark">1–10</span> dari <span
+                                class="fw-semibold text-dark">1,428</span> pengaduan
+                        </div>
+                        <nav aria-label="Navigasi Halaman Pengaduan">
+                            <ul class="pagination pagination-sm mb-0">
+                                <li class="page-item disabled">
+                                    <a aria-disabled="true" class="page-link text-muted" href="#" tabindex="-1">
+                                        <i class="bi bi-chevron-left" style="font-size: 0.75rem;"></i>
+                                        <span class="d-none d-md-inline ms-1">Sebelumnya</span>
+                                    </a>
+                                </li>
+                                <li aria-current="page" class="page-item active"><a class="page-link" href="#">1</a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item disabled"><span class="page-link text-muted">...</span></li>
+                                <li class="page-item"><a class="page-link" href="#">143</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">
+                                        <span class="d-none d-md-inline me-1">Selanjutnya</span>
+                                        <i class="bi bi-chevron-right" style="font-size: 0.75rem;"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <script src="assets/js/data-pengaduan.js"></script>
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

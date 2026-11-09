@@ -1,0 +1,60 @@
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #0f172a;
+    background-color: #ffffff;
+    overflow-x: hidden;
+}
+
+.hover-lift {
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px -8px rgba(15, 23, 42, 0.1) !important;
+}
+
+.bg-navy {
+    background-color: #0f172a !important;
+}
+
+.timeline-stepper {
+    position: relative;
+    padding-left: 2.5rem;
+}
+
+.timeline-stepper::before {
+    content: '';
+    position: absolute;
+    left: 0.95rem;
+    top: 0.75rem;
+    bottom: 0.75rem;
+    width: 2px;
+    background-color: #e2e8f0;
+}
+
+.timeline-step-icon {
+    position: absolute;
+    left: -2.5rem;
+    top: 0;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+}
+
+.dropzone-box {
+    border: 2px dashed #cbd5e1;
+    border-radius: 1rem;
+    background-color: #f8fafc;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.dropzone-box:hover {
+    border-color: #0d6efd;
+    background-color: #eff6ff;
+}
