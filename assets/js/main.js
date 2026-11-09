@@ -107,3 +107,110 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     })
 })
+
+async function cariPengaduanDenganTiket(nomorTiket) {
+    const db = await bukaDatabase();
+
+    return new Promise((resolve, reject) => {
+        const transaction = db.transaction(STORE_NAME, 'readonly');
+        const request = transaction.objectStore(STORE_NAME).getAll();
+
+        request.onsuccess = () => {
+            const masukan = nomorTiket.trim().replace(/^#/, '').toUpperCase();
+
+            const laporan = request.result.find((item) => {
+                const tiketTersimpan = String(item.nomorTiket || '')
+                    .trim()
+                    .replace(/^#/, '')
+                    .toUpperCase();
+
+                return tiketTersimpan === masukan;
+            });
+
+            resolve(laporan || null);
+        };
+
+        request.onerror = () => reject(request.error);
+
+        transaction.oncomplete = () => db.close();
+        transaction.onerror = () => {
+            db.close();
+            reject(transaction.error);
+        };
+        transaction.onabort = () => {
+            db.close();
+            reject(transaction.error);
+        };
+    });
+}
+
+function tampilkanHasilTiket(laporan) {
+    const kartu = document.getElementById('trackingResultCard');
+    kartu.replaceChildren();
+    kartu.classList.remove('d-none');
+
+    const judul = document.createElement('h5');
+    judul.className = 'fw-bold mb-3';
+
+    if (!laporan) {
+        judul.textContent = 'Tiket tidak ditemukan';
+        kartu.append(judul);
+
+        const keterangan = document.createElement('p');
+        keterangan.className = 'text-secondary mb-0';
+        keterangan.textContent = 'Periksa kembali nomor tiket. Pastikan laporan sudah tersimpan di browser ini.';
+        kartu.append(keterangan);
+        return;
+    }
+
+    judul.textContent = laporan.judul;
+    kartu.append(judul);
+
+    const detail = document.createElement('p');
+    detail.className = 'text-secondary mb-2';
+    detail.textContent = `Tiket: ${laporan.nomorTiket} | Kategori: ${laporan.kategori} | Tanggal: ${laporan.tanggal}`;
+    kartu.append(detail);
+
+    const lokasi = document.createElement('p');
+    lokasi.className = 'mb-2';
+    lokasi.textContent = `Lokasi: ${laporan.lokasi}`;
+    kartu.append(lokasi);
+
+    const deskripsi = document.createElement('p');
+    deskripsi.className = 'mb-3';
+    deskripsi.textContent = laporan.deskripsi;
+    kartu.append(deskripsi);
+
+    if (laporan.foto instanceof Blob) {
+        const foto = document.createElement('img');
+        foto.className = 'img-fluid rounded';
+        foto.alt = `Foto bukti untuk tiket ${laporan.nomorTiket}`;
+        foto.style.maxHeight = '320px';
+        foto.src = URL.createObjectURL(laporan.foto);
+        kartu.append(foto);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const inputTiket = document.getElementById('ticketInput');
+    const tombolCek = document.getElementById('btnCheckTicket');
+
+    if (!inputTiket || !tombolCek) return;
+
+    tombolCek.addEventListener('click', async () => {
+        const nomorTiket = inputTiket.value.trim();
+
+        if (!nomorTiket) {
+            inputTiket.focus();
+            return;
+        }
+
+        try {
+            const laporan = await cariPengaduanDenganTiket(nomorTiket);
+            tampilkanHasilTiket(laporan);
+        } catch (error) {
+            console.error('Gagal mencari tiket: ', error);
+            alert('Terjadi kesalahan saat mencari tiket. Coba lagi.');
+        }
+    });
+});
