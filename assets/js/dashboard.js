@@ -100,6 +100,11 @@ async function tampilkanPengaduan() {
                 document.getElementById('modalKategori').textContent = item.kategori || '-';
                 document.getElementById('modalDeskripsi').textContent = item.deskripsi || '';
 
+                document.getElementById('responseForm').dataset.pengaduanId = item.id;
+                document.getElementById('responseText').value = item.tanggapan?.catatan || '';
+                document.getElementById('responseStatus').value = item.statusKode || 'proses';
+                document.getElementById('responseOpd').value = item.disposisiKode || '';
+
                 const foto = document.getElementById('modalFoto');
                 const namaFoto = document.getElementById('modalNamaFoto');
 
@@ -122,3 +127,94 @@ async function tampilkanPengaduan() {
 }
 
 document.addEventListener('DOMContentLoaded', tampilkanPengaduan);
+
+function simpanTanggapanPengaduan(id, perubahan) {
+    return new Promise((resolve, reject) => {
+        const requestDb = indexedDB.open(DB_NAME, 1);
+
+        requestDb.onerror = () => reject(request.error);
+
+        requestDb.onsuccess = () => {
+            const db = requestDb.result;
+            const transaction = db.transaction(STORE_NAME, 'readwrite');
+            const store = transaction.objectStore(STORE_NAME);
+            const request = store.get(id);
+            let error;
+
+            request.onsuccess = () => {
+                if (!request.result) {
+                    error = new Error('Pengaduan tidak ditemukan.');
+                    transaction.abort();
+                    return;
+                }
+
+                store.put({
+                    ...request.result,
+                    ...perubahan
+                });
+            };
+
+            request.onerror = () => {
+                error = request.error;
+                transaction.abort();
+            };
+
+            transaction.oncomplete = () => {
+                db.close();
+                resolve();
+            };
+
+            transaction.onabort = () => {
+                db.close();
+                reject(error || transaction.error || new Error('Penyimpanan gagal.'));
+            };
+
+            transaction.onerror = () => {
+                error = error || transaction.error;
+            };
+        };
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const responseForm = document.getElementById('responseForm');
+
+    responseForm?.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const id = responseForm.dataset.pengaduanId;
+        if (!id) {
+            alert('Pengaduan yang akan ditanggapi belum dipilih.');
+            return;
+        }
+
+        const statusSelect = document.getElementById('responseStatus');
+        const opdSelect = document.getElementById('responseOpd');
+
+        const perubahan = {
+            statusKode: statusSelect.value,
+            status: statusSelect.options[statusSelect.selectedIndex].text,
+            disposisiKode: opdSelect.value,
+            disposisi: opdSelect.options[opdSelect.selectedIndex].text,
+            tanggapan: {
+                catatan: document.getElementById('responseText').value.trim(),
+                targetSelesai: document.getElementById('responseTarget').value.trim(),
+                dibuatPada: new Date().toISOString()
+            }
+        };
+
+        try {
+            await simpanTanggapanPengaduan(id, perubahan);
+
+            bootstrap.Modal
+                .getOrCreateInstance(document.getElementById('actionModal'))
+                .hide();
+
+            await tampilkanPengaduan();
+            alert('Tanggapan berhasil disimpan.');
+        } catch (error) {
+            console.error('Gagal menyimpan tanggapan: ', error);
+            alert('Tanggapan gagal disimpan. Coba lagi.');
+        }
+    })
+})

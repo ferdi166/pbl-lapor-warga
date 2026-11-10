@@ -422,11 +422,11 @@
                                     <div class="col-md-7 ps-md-3">
                                         <h6 class="fw-bold text-dark mb-3" style="font-size: 0.9rem;">Formulir Disposisi
                                             &amp; Tanggapan</h6>
-                                        <form>
+                                        <form id="responseForm">
                                             <div class="mb-3">
                                                 <label class="form-label text-dark fw-medium mb-1"
                                                     style="font-size: 0.8rem;">Status Penanganan</label>
-                                                <select class="form-select form-select-sm py-2">
+                                                <select id="responseStatus" class="form-select form-select-sm py-2">
                                                     <option selected="" value="proses">Diproses Lapangan (Sedang
                                                         Berjalan)</option>
                                                     <option value="verifikasi">Diverifikasi Tim Teknis</option>
@@ -437,8 +437,9 @@
                                             <div class="mb-3">
                                                 <label class="form-label text-dark fw-medium mb-1"
                                                     style="font-size: 0.8rem;">Disposisi OPD / Instansi Terkait</label>
-                                                <select class="form-select form-select-sm py-2">
-                                                    <option selected="">Dinas Pekerjaan Umum &amp; Penataan Ruang (PUPR)
+                                                <select id="responseOpd" class="form-select form-select-sm py-2">
+                                                    <option value="pupr" selected>Dinas Pekerjaan Umum &amp; Penataan
+                                                        Ruang (PUPR)
                                                     </option>
                                                     <option value="dlh">Dinas Lingkungan Hidup (DLH)</option>
                                                     <option value="satpol">Satuan Polisi Pamong Praja (Satpol PP)
@@ -453,15 +454,16 @@
                                                     <span
                                                         class="input-group-text bg-light text-secondary border-end-0"><i
                                                             class="bi bi-calendar-event"></i></span>
-                                                    <input class="form-control form-control-sm border-start-0"
-                                                        type="text" value="2 x 24 Jam (Maksimal 31 Okt 2024)" />
+                                                    <input id="responseTarget"
+                                                        class="form-control form-control-sm border-start-0" type="text"
+                                                        value="2 x 24 Jam (Maksimal 31 Okt 2024)" />
                                                 </div>
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label text-dark fw-medium mb-1"
                                                     style="font-size: 0.8rem;">Catatan &amp; Tanggapan Resmi
                                                     Petugas</label>
-                                                <textarea class="form-control form-control-sm"
+                                                <textarea id="responseText" class="form-control form-control-sm"
                                                     placeholder="Tuliskan instruksi penanganan teknis atau penjelasan resmi untuk warga pelapor..."
                                                     rows="3" style="font-size: 0.825rem;">Laporan telah diterima dan
                                                     diteruskan ke tim teknis PJU Kecamatan untuk penggantian bohlam
@@ -475,7 +477,7 @@
                                 <button class="btn btn-light btn-sm px-3 fw-medium" data-bs-dismiss="modal"
                                     type="button">Batal</button>
                                 <button class="btn btn-primary btn-sm px-4 fw-medium" data-bs-dismiss="modal"
-                                    type="button">Simpan &amp; Kirim Tanggapan</button>
+                                    type="submit" form="responseForm">Simpan &amp; Kirim Tanggapan</button>
                             </div>
                         </div>
                     </div>
