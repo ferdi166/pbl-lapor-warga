@@ -87,6 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
             lokasi: document.getElementById('reportLocation').value.trim(),
             deskripsi: document.getElementById('reportDescription').value.trim(),
             foto,
+            status: 'Menunggu Verifikasi',
             dibuatPada: new Date().toISOString()
         };
 
