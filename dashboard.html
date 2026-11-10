@@ -367,29 +367,39 @@
                                         <h6 class="fw-bold text-dark mb-3" style="font-size: 0.9rem;">Informasi Pelapor
                                             &amp; Berkas</h6>
                                         <div class="bg-light p-3 rounded-2 mb-3">
-                                            <div class="mb-2">
+                                            <!-- <div class="mb-2">
                                                 <small class="text-secondary d-block" style="font-size: 0.75rem;">Nama
                                                     Pelapor</small>
-                                                <span class="fw-semibold text-dark" style="font-size: 0.85rem;">Budi
+                                                <span class="fw-semibold text-dark" style="font-size: 0.85rem;"
+                                                    id="modalNamaPelapor">Budi
                                                     Santoso</span>
                                             </div>
                                             <div class="mb-2">
                                                 <small class="text-secondary d-block" style="font-size: 0.75rem;">Nomor
                                                     Induk Kependudukan (NIK)</small>
                                                 <span class="fw-medium text-dark font-monospace"
-                                                    style="font-size: 0.85rem;">3276************</span>
-                                            </div>
+                                                    style="font-size: 0.85rem;" id="modalNik">3276************</span>
+                                            </div> -->
                                             <div class="mb-2">
                                                 <small class="text-secondary d-block" style="font-size: 0.75rem;">Lokasi
                                                     Kejadian</small>
-                                                <span class="fw-medium text-dark" style="font-size: 0.85rem;">RT 04 / RW
+                                                <span class="fw-medium text-dark" style="font-size: 0.85rem;"
+                                                    id="modalLokasi">RT 04 / RW
                                                     02 Taman Sari</span>
                                             </div>
-                                            <div>
+                                            <div class="mb-2">
                                                 <small class="text-secondary d-block"
                                                     style="font-size: 0.75rem;">Kategori Pelaporan</small>
                                                 <span class="badge bg-secondary-subtle text-secondary border px-2 py-1"
-                                                    style="font-size: 0.75rem;">Infrastruktur Publik</span>
+                                                    style="font-size: 0.75rem;" id="modalKategori">Infrastruktur
+                                                    Publik</span>
+                                            </div>
+                                            <div class="mb-2">
+                                                <small class="text-secondary d-block"
+                                                    style="font-size: 0.75rem;">Deskripsi</small>
+                                                <span class="fw-medium text-dark" style="font-size: 0.85rem;"
+                                                    id="modalDeskripsi">Infrastruktur
+                                                    Publik</span>
                                             </div>
                                         </div>
                                         <div>
@@ -399,10 +409,11 @@
                                                 <img alt="Bukti Foto Aduan" class="img-fluid w-100 object-fit-cover"
                                                     data-alt="A realistic street photography view of a dim residential neighborhood corner in Indonesia during evening dusk with a broken non-functioning public street light post, overcast suburban road ambiance with clean realistic documentary lighting"
                                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVC9QhPlKgci0S22Ueve45BDoshiq_li0ncN18zkS65VzgaV_48Axp992FW2w74ZKTOkMgw8hbluyg7d54wfFcVycH_MgpIZ--tQkIriedY5CW8fF_6v9g_jkLXg1k1aOhW_M0HRcS1IlqDI6X6ecIj_blkSX2QM2j1MUNASvS5NymnnnKYKHxGpTUgW122C4O3D8jT_fkUkAP4fbcpC-l4p-MFT1gp3t2PRB-8oWYlyGtqC22zr8jcg"
-                                                    style="height: 140px;" />
+                                                    style="height: 140px;" id="modalFoto" />
                                                 <div class="position-absolute bottom-0 start-0 end-0 bg-dark bg-opacity-75 text-white px-2 py-1 small text-truncate"
                                                     style="font-size: 0.7rem;">
-                                                    <i class="bi bi-paperclip me-1"></i>foto_lampu_padam_rw05.jpg
+                                                    <i class="bi bi-paperclip me-1"
+                                                        id="modalNamaFoto"></i>foto_lampu_padam_rw05.jpg
                                                 </div>
                                             </div>
                                         </div>
@@ -452,8 +463,9 @@
                                                     Petugas</label>
                                                 <textarea class="form-control form-control-sm"
                                                     placeholder="Tuliskan instruksi penanganan teknis atau penjelasan resmi untuk warga pelapor..."
-                                                    rows="3"
-                                                    style="font-size: 0.825rem;">Laporan telah diterima dan diteruskan ke tim teknis PJU Kecamatan untuk penggantian bohlam serta pemeriksaan gardu kontrol malam ini.</textarea>
+                                                    rows="3" style="font-size: 0.825rem;">Laporan telah diterima dan
+                                                    diteruskan ke tim teknis PJU Kecamatan untuk penggantian bohlam
+                                                    serta pemeriksaan gardu kontrol malam ini.</textarea>
                                             </div>
                                         </form>
                                     </div>

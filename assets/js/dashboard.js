@@ -91,6 +91,27 @@ async function tampilkanPengaduan() {
             actionButton.dataset.bsToggle = 'modal';
             actionButton.dataset.bsTarget = '#actionModal';
 
+            actionButton.addEventListener('click', () => {
+                document.getElementById('actionModalLabel').textContent = `Tindak Lanjut Pengaduan ${item.nomorTiket || ''}`;
+
+                // document.getElementById('modalNamaPelapor').textContent = item.namaPelapor || 'Belum tersedia';
+                // document.getElementById('modalNik').textContent = item.nik || 'Belum tersedia';
+                document.getElementById('modalLokasi').textContent = item.lokasi || '-';
+                document.getElementById('modalKategori').textContent = item.kategori || '-';
+                document.getElementById('modalDeskripsi').textContent = item.deskripsi || '';
+
+                const foto = document.getElementById('modalFoto');
+                const namaFoto = document.getElementById('modalNamaFoto');
+
+                if (item.foto instanceof Blob) {
+                    foto.src = URL.createObjectURL(item.foto);
+                    namaFoto.textContent = item.foto.name || 'Foto bukti pengaduan';
+                } else {
+                    foto.removeAttribute('src');
+                    namaFoto.textContent = 'Belum ada foto';
+                }
+            })
+
             actionCell.appendChild(actionButton);
 
             tbody.appendChild(row);
