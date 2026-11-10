@@ -74,8 +74,27 @@ async function tampilkanPengaduan() {
 
             const statusCell = document.createElement('td');
             statusCell.className = 'py-3 px-3 text-center';
+
+            const statusText = String(item.status || '').toLowerCase();
+
+            const statusKey = item.statusKode || (
+                statusText.includes('selesai') ? 'selesai' :
+                    statusText.includes('tolak') ? 'tolak' :
+                        statusText.includes('proses') ? 'proses' :
+                            statusText.includes('verifikasi') ? 'verifikasi' :
+                                'menunggu'
+            );
+
+            const statusStyles = {
+                menunggu: 'bg-warning bg-opacity-10 text-warning',
+                verifikasi: 'bg-primary bg-opacity-10 text-primary',
+                proses: 'bg-info bg-opacity-10 text-info',
+                selesai: 'bg-success bg-opacity-10 text-success',
+                tolak: 'bg-danger bg-opacity-10 text-danger'
+            };
+
             const badge = document.createElement('span');
-            badge.className = 'badge rounded-pill bg-warning bg-opacity-10 text-warning px-3 py-1';
+            badge.className = `badge rounded-pill ${statusStyles[statusKey] || statusStyles.menunggu} px-3 py-1`;
             badge.textContent = item.status || 'Menunggu Verifikasi';
             statusCell.appendChild(badge);
             row.appendChild(statusCell);
