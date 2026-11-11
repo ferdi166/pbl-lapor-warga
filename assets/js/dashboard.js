@@ -123,7 +123,7 @@ async function tampilkanPengaduan() {
 
                 document.getElementById('responseForm').dataset.pengaduanId = item.id;
                 document.getElementById('responseText').value = item.tanggapan?.catatan || '';
-                document.getElementById('responseTarget').value = item.tanggapan.targetSelesai || '';
+                document.getElementById('responseTarget').value = item.tanggapan?.targetSelesai || '';
                 document.getElementById('responseStatus').value = item.statusKode || 'proses';
                 document.getElementById('responseOpd').value = item.disposisiKode || '';
 

@@ -172,15 +172,108 @@ function tampilkanHasilTiket(laporan) {
     detail.textContent = `Tiket: ${laporan.nomorTiket} | Kategori: ${laporan.kategori} | Tanggal: ${laporan.tanggal}`;
     kartu.append(detail);
 
-    const lokasi = document.createElement('p');
-    lokasi.className = 'mb-2';
-    lokasi.textContent = `Lokasi: ${laporan.lokasi}`;
-    kartu.append(lokasi);
+    const statusText = laporan.status || 'Menunggu Verifikasi';
+    const statusKey = laporan.statusKode || (
+        statusText.toLowerCase().includes('selesai') ? 'selesai' :
+            statusText.toLowerCase().includes('tolak') ? 'tolak' :
+                statusText.toLowerCase().includes('proses') ? 'proses' :
+                    statusText.toLowerCase().includes('verifikasi') ? 'verifikasi' :
+                        'menunggu'
+    );
 
-    const deskripsi = document.createElement('p');
-    deskripsi.className = 'mb-3';
-    deskripsi.textContent = laporan.deskripsi;
-    kartu.append(deskripsi);
+    const statusStyles = {
+        menunggu: 'bg-warning bg-opacity-10 text-warning',
+        verifikasi: 'bg-primary bg-opacity-10 text-primary',
+        proses: 'bg-info bg-opacity-10 text-info',
+        selesai: 'bg-success bg-opacity-10 text-success',
+        tolak: 'bg-danger bg-opacity-10 text-danger'
+    };
+
+    const statusBadge = document.createElement('span');
+    statusBadge.className = `badge rounded-pill px-3 py-2 ${statusStyles[statusKey] || statusStyles.menunggu}`;
+    statusBadge.textContent = statusText;
+
+    const statusBaris = document.createElement('p');
+    statusBaris.className = 'mb-3';
+    statusBaris.append('Status: ', statusBadge);
+    kartu.append(statusBaris);
+
+    const tanggapan = laporan.tanggapan || {};
+    const bagianTanggapan = document.createElement('div');
+    bagianTanggapan.className = 'mt-3 pt-3 border-top';
+
+    const judulTanggapan = document.createElement('h6');
+    judulTanggapan.className = 'fw-bold mb-2';
+    judulTanggapan.textContent = 'Tanggapan Petugas';
+    bagianTanggapan.append(judulTanggapan);
+
+    const catatan = document.createElement('p');
+    catatan.className = 'mb-2';
+    catatan.textContent = tanggapan.catatan || 'Belum ada tanggapan dari petugas.';
+    bagianTanggapan.append(catatan);
+
+    if (laporan.disposisi) {
+        const opd = document.createElement('p');
+        opd.className = 'small text-secondary mb-1';
+        opd.textContent = `Diteruskan ke: ${laporan.disposisi}`;
+        bagianTanggapan.append(opd);
+    }
+
+    if (tanggapan.targetSelesai) {
+        const target = document.createElement('p');
+        target.className = 'small text-secondary mb-1';
+        target.textContent = `Target Selesai: ${tanggapan.targetSelesai}`;
+        bagianTanggapan.append(target);
+    }
+
+    if (tanggapan.dibuatPada) {
+        const waktu = document.createElement('p');
+        waktu.className = 'small text-secondary mb-1';
+        waktu.textContent = `Diperbarui: ${new Date(tanggapan.dibuatPada).toLocaleString('id-ID')}`;
+        bagianTanggapan.append(waktu);
+    }
+
+    kartu.append(bagianTanggapan);
+
+    const detailLaporan = document.createElement('section');
+    detailLaporan.className = 'mt-3';
+
+    const judulDetail = document.createElement('h6');
+    judulDetail.className = 'fw-bold mb-3';
+    judulDetail.textContent = 'Detail Laporan';
+    detailLaporan.append(judulDetail);
+
+    const labelLokasi = document.createElement('div');
+    labelLokasi.className = 'small fw-semibold text-secondary mb-1';
+    labelLokasi.textContent = 'Lokasi Kejadian';
+    detailLaporan.append(labelLokasi);
+
+    const lokasiBaris = document.createElement('div');
+    lokasiBaris.className = 'd-flex align-items-start gap-2 mb-3';
+
+    const ikonLokasi = document.createElement('i');
+    ikonLokasi.className = 'bi bi-geo-alt-fill text-danger mt-1';
+    ikonLokasi.setAttribute('aria-hidden', 'true');
+
+    const teksLokasi = document.createElement('div');
+    teksLokasi.className = 'text-dark';
+    teksLokasi.textContent = laporan.lokasi || '-';
+
+    lokasiBaris.append(ikonLokasi, teksLokasi);
+    detailLaporan.append(lokasiBaris);
+
+    const labelKeterangan = document.createElement('div');
+    labelKeterangan.className = 'small fw-semibold text-secondary mb-1';
+    labelKeterangan.textContent = 'Keterangan Laporan';
+    detailLaporan.append(labelKeterangan);
+
+    const teksDeskripsi = document.createElement('p');
+    teksDeskripsi.className = 'text-dark mb-4';
+    teksDeskripsi.style.whiteSpace = 'pre-line';
+    teksDeskripsi.textContent = laporan.deskripsi || '-';
+    detailLaporan.append(teksDeskripsi);
+
+    kartu.append(detailLaporan);
 
     if (laporan.foto instanceof Blob) {
         const foto = document.createElement('img');
