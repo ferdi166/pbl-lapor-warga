@@ -165,13 +165,15 @@
                                     <option value="3">Keamanan</option>
                                     <option value="4">Administrasi</option>
                                 </select>
-                                <select
+                                <select id="filterDashboardStatus"
                                     class="form-select form-select-sm border-light-subtle bg-light w-auto py-2 rounded-2"
                                     style="font-size: 0.85rem;">
-                                    <option selected="">Semua Status</option>
+                                    <option value="" selected="">Semua Status</option>
                                     <option value="menunggu">Menunggu</option>
-                                    <option value="diproses">Diproses</option>
+                                    <option value="verifikasi">Verifikasi</option>
+                                    <option value="proses">Diproses</option>
                                     <option value="selesai">Selesai</option>
+                                    <option value="tolak">Selesai</option>
                                 </select>
                                 <button
                                     class="btn btn-outline-primary btn-sm px-3 py-2 rounded-2 d-inline-flex align-items-center gap-2"
@@ -189,7 +191,7 @@
                                 <tr class="text-uppercase" style="font-size: 0.72rem; letter-spacing: 0.05em;">
                                     <th class="py-3 px-3 border-0" scope="col">ID Tiket</th>
                                     <th class="py-3 px-3 border-0" scope="col">Waktu</th>
-                                    <th class="py-3 px-3 border-0" scope="col">Nama Pelapor</th>
+                                    <!-- <th class="py-3 px-3 border-0" scope="col">Nama Pelapor</th> -->
                                     <th class="py-3 px-3 border-0" scope="col">Judul Laporan</th>
                                     <th class="py-3 px-3 border-0 text-center" scope="col">Status</th>
                                     <th class="py-3 px-3 border-0 text-end" scope="col">Aksi</th>
@@ -351,7 +353,7 @@
                                 <div class="d-flex align-items-center gap-2">
                                     <h6 class="modal-title fw-bold text-dark mb-0" id="actionModalLabel">Tindak Lanjut
                                         Pengaduan #LW-8921</h6>
-                                    <span
+                                    <span id="modalStatusBadge"
                                         class="badge rounded-pill bg-warning bg-opacity-10 text-warning border border-warning border-opacity-25 px-2 py-1 fw-semibold"
                                         style="font-size: 0.72rem;">
                                         Menunggu Penanganan

@@ -69,7 +69,7 @@ async function tampilkanPengaduan() {
 
             tambahCell(row, item.nomorTiket || '-', 'fw-bold text-primary');
             tambahCell(row, waktuTampil, 'text-secondary text-nowrap');
-            tambahCell(row, item.namaPelapor || '-', 'text-dark');
+            // tambahCell(row, item.namaPelapor || '-', 'text-dark');
             tambahCell(row, item.judul || '-', 'text-dark');
 
             const statusCell = document.createElement('td');
@@ -84,6 +84,8 @@ async function tampilkanPengaduan() {
                             statusText.includes('verifikasi') ? 'verifikasi' :
                                 'menunggu'
             );
+
+            row.dataset.status = statusKey;
 
             const statusStyles = {
                 menunggu: 'bg-warning bg-opacity-10 text-warning',
@@ -121,8 +123,39 @@ async function tampilkanPengaduan() {
 
                 document.getElementById('responseForm').dataset.pengaduanId = item.id;
                 document.getElementById('responseText').value = item.tanggapan?.catatan || '';
+                document.getElementById('responseTarget').value = item.tanggapan.targetSelesai || '';
                 document.getElementById('responseStatus').value = item.statusKode || 'proses';
                 document.getElementById('responseOpd').value = item.disposisiKode || '';
+
+                const badge = document.getElementById('modalStatusBadge');
+
+                const statusText = String(item.status || '').toLowerCase();
+                const statusKey = item.statusKode || (
+                    statusText.includes('selesai') ? 'selesai' :
+                        statusText.includes('tolak') ? 'tolak' :
+                            statusText.includes('proses') ? 'proses' :
+                                statusText.includes('verifikasi') ? 'verifikasi' :
+                                    'menunggu'
+                );
+
+                const warnaStatus = {
+                    menunggu: ['bg-warning', 'text-warning', 'border-warning', 'border-opacity-25'],
+                    verifikasi: ['bg-primary', 'text-primary', 'border-primary', 'border-opacity-25'],
+                    proses: ['bg-info', 'text-info', 'border-info', 'border-opacity-25'],
+                    selesai: ['bg-success', 'text-success', 'border-success', 'border-opacity-25'],
+                    tolak: ['bg-danger', 'text-danger', 'border-danger', 'border-opacity-25']
+                };
+
+                badge.classList.remove(
+                    'bg-warning', 'text-warning', 'border-warning',
+                    'bg-primary', 'text-primary', 'border-primary',
+                    'bg-info', 'text-info', 'border-info',
+                    'bg-success', 'text-success', 'border-success',
+                    'bg-danger', 'text-danger', 'border-danger'
+                );
+
+                badge.classList.add(...(warnaStatus[statusKey] || warnaStatus.menunggu));
+                badge.textContent = item.status || 'Menunggu Verifikasi';
 
                 const foto = document.getElementById('modalFoto');
                 const namaFoto = document.getElementById('modalNamaFoto');
@@ -146,6 +179,23 @@ async function tampilkanPengaduan() {
 }
 
 document.addEventListener('DOMContentLoaded', tampilkanPengaduan);
+
+document.addEventListener('DOMContentLoaded', () => {
+    const filterStatus = document.getElementById('filterDashboardStatus');
+
+    filterStatus?.addEventListener('change', () => {
+        const statusTerpilih = filterStatus.value;
+        const rows = document.querySelectorAll(
+            '#dashboardPengaduanBody tr[data-status]'
+        );
+
+        rows.forEach(row => {
+            row.hidden = Boolean(
+                statusTerpilih && row.dataset.status !== statusTerpilih
+            );
+        });
+    });
+});
 
 function simpanTanggapanPengaduan(id, perubahan) {
     return new Promise((resolve, reject) => {
