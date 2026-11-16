@@ -57,6 +57,22 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
+    function simpanBerita(database, berita) {
+        return new Promise((resolve, reject) => {
+            const transaction = database.transaction(storeName, 'readwrite');
+            const request = transaction.objectStore(storeName).put(berita);
+            let id;
+
+            request.onsuccess = () => {
+                id = request.result;
+            };
+
+            transaction.oncomplete = () => resolve(id);
+            transaction.onerror = () => reject(transaction.error);
+            transaction.onabort = () => reject(transaction.error);
+        });
+    }
+
     function ambilSemuaBerita(database) {
         return new Promise((resolve, reject) => {
             const transaction = database.transaction(storeName, 'readonly');
@@ -67,10 +83,20 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    function simpanBerita(database, berita) {
+    function ambilBeritaById(database, id) {
+        return new Promise((resolve, reject) => {
+            const transaction = database.transaction(storeName, 'readonly');
+            const request = transaction.objectStore(storeName).get(Number(id));
+
+            request.onsuccess = () => resolve(request.result);
+            request.onerror = () => reject(request.error);
+        });
+    }
+
+    function hapusBerita(database, id) {
         return new Promise((resolve, reject) => {
             const transaction = database.transaction(storeName, 'readwrite');
-            transaction.objectStore(storeName).add(berita);
+            transaction.objectStore(storeName).delete(Number(id));
 
             transaction.oncomplete = () => resolve();
             transaction.onerror = () => reject(transaction.error);
@@ -148,56 +174,188 @@ document.addEventListener('DOMContentLoaded', async () => {
             : 'badge bg-secondary-subtle text-secondary rounded-pill px-2 py-1';
         statusCell.append(buatElemen('span', statusClass, berita.status));
 
-        row.append(titleCell, categoryCell, dateCell, authorCell, statusCell);
+        row.dataset.id = berita.id;
+
+        const actionCell = buatElemen('td', 'pe-4 text-end text-nowrap');
+        const actionButtons = buatElemen('div', 'd-inline-flex gap-1');
+
+        const editButton = buatElemen(
+            'button',
+            'btn btn-sm btn-outline-secondary rounded-pill px-2 py-1',
+            'Edit'
+        );
+        editButton.type = 'button';
+        editButton.dataset.aksi = 'edit';
+
+        const deleteButton = buatElemen(
+            'button',
+            'btn btn-sm btn-outline-danger rounded-pill px-2 py-1',
+            'Hapus'
+        );
+        deleteButton.type = 'button';
+        deleteButton.dataset.aksi = 'hapus';
+
+        actionButtons.append(editButton, deleteButton);
+        actionCell.append(actionButtons);
+
+        row.append(titleCell, categoryCell, dateCell, authorCell, statusCell, actionCell);
         tableBody.prepend(row);
+    }
+    let idBeritaEdit = null;
+
+    const judulModal = document.getElementById('modalBeritaLabel');
+    const tombolSimpan = form.querySelector('[type="submit"]');
+    const inputFoto = document.getElementById('fotoBerita');
+
+    const previewFoto = document.getElementById('previewFotoBerita');
+    let previewFotoUrl = null;
+
+    function tampilkanPreviewFoto(file) {
+        if (previewFotoUrl) {
+            URL.revokeObjectURL(previewFotoUrl);
+            previewFotoUrl = null;
+        }
+
+        if (!(file instanceof Blob)) {
+            previewFoto.removeAttribute('src');
+            previewFoto.style.display = 'none';
+            return;
+        }
+
+        previewFotoUrl = URL.createObjectURL(file);
+        previewFoto.src = previewFotoUrl;
+        previewFoto.style.display = 'block';
+    }
+
+    function resetFormBerita() {
+        idBeritaEdit = null;
+        form.reset();
+        tampilkanPreviewFoto(null);
+        judulModal.textContent = 'Tambah Berita Baru';
+        tombolSimpan.textContent = 'Simpan Berita';
+    }
+
+    async function muatUlangBerita(database) {
+        const daftarBerita = await ambilSemuaBerita(database);
+
+        // Data contoh statis tidak punya record IndexedDB; tampilkan data database saja.
+        tableBody.replaceChildren();
+
+        daftarBerita
+            .sort((a, b) => b.id - a.id)
+            .forEach(tampilkanBerita);
     }
 
     try {
         const database = await bukaDatabase();
-        const beritaTersimpan = await ambilSemuaBerita(database);
 
-        // Urutan ID dari IndexedDB menaik; prepend membuat berita terbaru berada di atas.
-        beritaTersimpan.forEach(tampilkanBerita);
+        await muatUlangBerita(database);
+
+        // Klik Edit atau Hapus pada baris tabel.
+        tableBody.addEventListener('click', async (event) => {
+            const tombol = event.target.closest('button[data-aksi]');
+            if (!tombol) return;
+
+            const row = tombol.closest('tr');
+            const id = Number(row.dataset.id);
+
+            if (tombol.dataset.aksi === 'edit') {
+                const berita = await ambilBeritaById(database, id);
+                if (!berita) return;
+
+                idBeritaEdit = id;
+                form.elements.judul.value = berita.judul;
+                form.elements.ringkasan.value = berita.ringkasan;
+                form.elements.kategori.value = berita.kategori;
+                form.elements.tanggal.value = berita.tanggal;
+                form.elements.penulis.value = berita.penulis;
+                form.elements.status.value = berita.status;
+                inputFoto.value = '';
+                tampilkanPreviewFoto(berita.foto);
+
+                inputFoto.addEventListener('change', () => {
+                    const fotoBaru = inputFoto.files[0];
+                    if (fotoBaru) tampilkanPreviewFoto(fotoBaru);
+                });
+
+                judulModal.textContent = 'Edit Berita';
+                tombolSimpan.textContent = 'Simpan Perubahan';
+
+                bootstrap.Modal.getOrCreateInstance(modalElement).show();
+                return;
+            }
+
+            if (tombol.dataset.aksi === 'hapus') {
+                if (!confirm('Yakin ingin menghapus berita ini?')) return;
+
+                try {
+                    await hapusBerita(database, id);
+                    await muatUlangBerita(database);
+                } catch (error) {
+                    console.error('Gagal menghapus berita:', error);
+                    alert('Berita gagal dihapus.');
+                }
+            }
+        });
+
+        // Tombol tambah membuka form dalam keadaan kosong.
+        document.querySelector('[data-bs-target="#modalBerita"]')
+            ?.addEventListener('click', resetFormBerita);
 
         form.addEventListener('submit', async (event) => {
             event.preventDefault();
 
             const formData = new FormData(form);
-            const foto = formData.get('foto');
-
-            if (!(foto instanceof File) || foto.size === 0) {
-                alert('Silakan pilih foto berita.');
-                return;
-            }
-
-            if (!foto.type.startsWith('image/')) {
-                alert('File yang dipilih harus berupa gambar.');
-                return;
-            }
-
-            if (foto.size > 5 * 1024 * 1024) {
-                alert('Ukuran foto maksimal 5 MB.');
-                return;
-            }
-
-            const beritaBaru = {
-                judul: formData.get('judul').trim(),
-                ringkasan: formData.get('ringkasan').trim(),
-                kategori: formData.get('kategori'),
-                tanggal: formData.get('tanggal'),
-                penulis: formData.get('penulis').trim(),
-                status: formData.get('status'),
-                foto: foto
-            };
+            const fileFoto = formData.get('foto');
 
             try {
-                await simpanBerita(database, beritaBaru);
-                tampilkanBerita(beritaBaru);
+                const beritaLama = idBeritaEdit !== null
+                    ? await ambilBeritaById(database, idBeritaEdit)
+                    : null;
+
+                if (!beritaLama && (!(fileFoto instanceof File) || fileFoto.size === 0)) {
+                    alert('Silakan pilih foto berita.');
+                    return;
+                }
+
+                if (fileFoto instanceof File && fileFoto.size > 0) {
+                    if (!fileFoto.type.startsWith('image/')) {
+                        alert('File yang dipilih harus berupa gambar.');
+                        return;
+                    }
+
+                    if (fileFoto.size > 5 * 1024 * 1024) {
+                        alert('Ukuran foto maksimal 5 MB.');
+                        return;
+                    }
+                }
+
+                const berita = {
+                    ...(beritaLama || {}),
+                    judul: formData.get('judul').trim(),
+                    ringkasan: formData.get('ringkasan').trim(),
+                    kategori: formData.get('kategori'),
+                    tanggal: formData.get('tanggal'),
+                    penulis: formData.get('penulis').trim(),
+                    status: formData.get('status'),
+                    foto: fileFoto instanceof File && fileFoto.size > 0
+                        ? fileFoto
+                        : beritaLama?.foto
+                };
+
+                if (idBeritaEdit !== null) {
+                    berita.id = idBeritaEdit;
+                }
+
+                await simpanBerita(database, berita);
+                await muatUlangBerita(database);
+
                 form.reset();
+                idBeritaEdit = null;
                 bootstrap.Modal.getOrCreateInstance(modalElement).hide();
             } catch (error) {
                 console.error('Gagal menyimpan berita:', error);
-                alert('Berita gagal disimpan. Penyimpanan browser mungkin penuh.');
+                alert('Berita gagal disimpan.');
             }
         });
     } catch (error) {

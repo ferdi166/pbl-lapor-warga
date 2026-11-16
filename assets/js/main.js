@@ -3,7 +3,7 @@ const STORE_NAME = 'pengaduan';
 
 function bukaDatabase() {
     return new Promise((resolve, reject) => {
-        const request = indexedDB.open(DB_NAME, 1);
+        const request = indexedDB.open(DB_NAME, 2);
 
         request.onupgradeneeded = () => {
             const db = request.result;

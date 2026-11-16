@@ -75,7 +75,7 @@ const STORE_NAME = 'pengaduan';
 
 function ambilSemuaPengaduan() {
     return new Promise((resolve, reject) => {
-        const request = indexedDB.open(DB_NAME, 1);
+        const request = indexedDB.open(DB_NAME, 2);
 
         request.onerror = () => reject(request.error);
 
